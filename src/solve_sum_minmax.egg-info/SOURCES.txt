@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+src/package/__init__.py
+src/package/solve_sum_min_max.py
+src/solve_sum_minmax.egg-info/PKG-INFO
+src/solve_sum_minmax.egg-info/SOURCES.txt
+src/solve_sum_minmax.egg-info/dependency_links.txt
+src/solve_sum_minmax.egg-info/top_level.txt

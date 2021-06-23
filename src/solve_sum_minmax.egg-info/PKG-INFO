@@ -1,3 +1,19 @@
+Metadata-Version: 2.1
+Name: solve-sum-minmax
+Version: 0.0.1
+Summary: A package to solve the sum of min/max equations
+Home-page: https://github.com/Hegelim/solve-sum-minmax
+Author: Yewen Zhou
+Author-email: yz4175@columbia.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 **solve-sum-minmax** is used to solve a sum of min/max equations in python by 
 using numerical methods. For instance, say you want to solve this equation: 
 min(400, 500*x) + min(200, 500*x) + min(0, 500*x) = 700 
@@ -9,10 +25,11 @@ might result in huge computation.
 Currently, there isn't any available packages in Python
 that allows you to solve this kind of equation fastly with minimum codes. Thus,
 this package is developed to fill the void and hopefully be of use to the 
-broad population.  
+broad population.
 **current version**: 0.0.1  
 **email**: yz4175@columbia.edu  
-**disclaimer**: this package is still under development, the current version
+**disclaimer**:this package is still under development, the current version
 only has very limited functionality
 **collaboration**: collaborations are welcomed, please send me an email if you 
 are interested.
+
