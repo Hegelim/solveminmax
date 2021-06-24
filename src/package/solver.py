@@ -3,26 +3,13 @@ from sympy import N
 from sympy.solvers import solve
 from sympy import Symbol
 from itertools import product
+# TODO: what if the solution is a range?
 
 
 def convert_letters(matchobj):
     m = matchobj.group()
     match_map = {m: "*result[0]"} if len(m) == 2 else {m: m}
     return match_map[m]
-
-
-# def knit_str(equation):
-#     eq_replaced = re.sub(r"\*([a-z]+)", convert_letters, equation)
-#     eq_replaced = re.sub(r"\d+", convert_digits, eq_replaced)
-#     eq_replaced = (eq_replaced.replace("min", "np.minimum")
-#                    .replace("max", "np.maximum"))
-#     return eq_replaced
-#
-#
-# def extract_eq_val(equation_str):
-#     m = re.search(r"([^=]+)=\s+(\d+)", equation_str)
-#     if m:
-#         return m.group(1), float(m.group(2))
 
 
 def solve_sum_minmax(equation, low=0, high=1.0, float=False):
@@ -71,5 +58,5 @@ def solve_sum_minmax(equation, low=0, high=1.0, float=False):
 
 
 if __name__ == "__main__":
-    eq = "min(500, 600*a) - max(400, 500*a) = 200"
+    eq = "min(500, 600*a) - min(500, 600*a) = 0"
     print(solve_sum_minmax(eq))

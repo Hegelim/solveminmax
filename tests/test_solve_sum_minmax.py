@@ -1,6 +1,4 @@
 from src.package import solver
-import numpy as np
-from sympy import *
 
 
 class TestClass:
@@ -32,7 +30,7 @@ class TestClass:
         eq = "min(500, 600*a) + max(400, 500*a) = 500"
         assert solver.solve_sum_minmax(eq).evalf() == 1/6
 
-    # def test_7(self):
-    #     eq = "min(500, 600*a) - min(500, 600*a) = 0"
-    #     assert solver.solve_sum_minmax(eq).evalf() ==
+    def test_7(self):
+        eq = "min(500, 600*a) - min(500, 600*a) = 0"
+        assert solver.solve_sum_minmax(eq).evalf() == 5/6
 
