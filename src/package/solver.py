@@ -12,14 +12,15 @@ def convert_letters(matchobj):
     return match_map[m]
 
 
-def solve_sum_minmax(equation, low=0, high=1.0, float=False):
+def solve_sum_minmax(equation, var_name, low=0, high=1.0, decimal=False):
     """Solve a sum of min equations numerically.
 
     Args:
         equation: string of min equation
+        var_name: char, the variable
         low: float, the lower bound of the variable, exclusive
         high: float, the higher bound of the variable, exclusive
-        float: bool,whether to return exact float value
+        decimal: bool,whether to return exact float value
     """
     equation = f"+{equation}"
     value = re.search(r"=\s*(\d+)", equation).group(1)
@@ -27,14 +28,17 @@ def solve_sum_minmax(equation, low=0, high=1.0, float=False):
     digit_parts = re.findall(r"((\+|\-)\s*\d+(\*[a-z])+)", equation)
 
     lists = []
-    for eq in minmax_parts:
-        match = re.findall(r"(\d+[\*a-z]*),\s+(\d+[\*a-z]*)", eq[2])
+    for e in minmax_parts:
+        match = re.findall(r"(\d+[\*a-z]*),\s+(\d+[\*a-z]*)", e[2])
         lists.append(match[0])
     products = product(*lists)
 
     a_replace = re.sub(r"\*([a-z]+)", convert_letters, equation)
     a_replace = a_replace.replace(r"=", "==")
-    a = Symbol("a")
+    x = var_name
+    exec(f"x = {Symbol(x)}")
+    print(var_name)
+    return
 
     for p in products:
         knit = ""
@@ -50,7 +54,7 @@ def solve_sum_minmax(equation, low=0, high=1.0, float=False):
         elif (result[0] <= low) or (result[0]) >= high:
             continue
         if eval(a_replace):
-            if float:
+            if decimal:
                 return N(result[0])
             else:
                 return result[0]
@@ -59,4 +63,4 @@ def solve_sum_minmax(equation, low=0, high=1.0, float=False):
 
 if __name__ == "__main__":
     eq = "min(500, 600*a) - min(500, 600*a) = 0"
-    print(solve_sum_minmax(eq))
+    print(solve_sum_minmax(eq, "a"))
