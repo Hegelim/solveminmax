@@ -1,7 +1,6 @@
 import re
-from sympy import N
-from sympy.solvers import solve
-from sympy import Symbol
+from sympy import N, FiniteSet, Symbol, EmptySet, Complexes
+from sympy.solvers import solveset
 from itertools import product
 # TODO: what if the solution is a range?
 
@@ -36,7 +35,7 @@ def gen_validate_eq(equation):
 
 def convert_letters(matchobj):
     m = matchobj.group()
-    match_map = {m: "*result[0]"} if len(m) == 2 else {m: m}
+    match_map = {m: "*next(iter(result))"} if len(m) == 2 else {m: m}
     return match_map[m]
 
 
@@ -56,7 +55,6 @@ def solve_sum_minmax(equation, var_name, low=0, high=1.0, decimal=False):
     minmax_terms = get_minmax_terms(equation)
     cons_var_terms = get_cons_var_terms(equation)
     products = gen_combs(minmax_terms)
-    # print(list(products))
     validate_eq = gen_validate_eq(equation)
     x = Symbol("x")
 
@@ -71,19 +69,22 @@ def solve_sum_minmax(equation, var_name, low=0, high=1.0, decimal=False):
                 knitted += f"{operator}{operand}"
         knitted += f"-{value_term}"
         knitted = knitted.replace(var_name, "x")
-        result = solve(eval(knitted), x)
-        if len(result) == 0:
+        result = solveset(eval(knitted), x)
+        if result == EmptySet:
             continue
-        elif (result[0] <= low) or (result[0]) >= high:
+        elif result == Complexes:
+            continue
+        elif result == FiniteSet and \
+                (next(iter(result)) <= low) or (next(iter(result)) >= high):
             continue
         if eval(validate_eq):
             if decimal:
-                return N(result[0])
+                return N(next(iter(result)))
             else:
-                return result[0]
+                return next(iter(result))
     return None
 
 
 if __name__ == "__main__":
-    eq = "800*a + 2*min(300, 400*a) + 3*max(400, 500*a) + min(400,500*a)= 1000"
+    eq = "min(400, 500*a) - min(400, 500*a) = 0"
     print(solve_sum_minmax(eq, "a"))
