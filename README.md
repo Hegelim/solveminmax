@@ -7,28 +7,33 @@ x is within range (0, 1).
 In Math, the rigorous way would 
 require you to set up all possible conditions, which 
 might result in huge computation. 
-Currently, there isn't any available packages in Python
-that allows you to solve this kind of equation fastly with minimum codes. Thus,
+Currently, there aren't any available packages in Python
+that allows you to solve this kind of equation fastly and efficiently. Thus,
 this package is developed to fill the void and hopefully be of use to the broad population.  
 ****
 **Quick Start**:  
-Let's say you want to find the solution for the equation 
-min(500, 600a) + max(400, 500a) = 500. Solving it in Math makes you feel 
-annoyed, and you ask yourself, "What if there is a library that lets me 
-solve it like a piece of cake?" Yes, there is a library now, 
-although not perfect. You can use it like below:  
+Let's say you want to solve the equation 
+min(500, 600a) + max(400, 500a) = 500. However, solving it in Math means you 
+would have to set up the conditions, then solve the check for each one of them, 
+which sounds like a lot of work, especially for smart people like you 
+who knows how to take advantage of existing tools. So you ask yourself,
+"What if there is a library that lets me solve it like a piece of cake?" Well, 
+there is a library for you now! To solve your problem, simply type in these
+codes below: 
 ```
 from solve-sum-minmax import solver
 >>> eq = "min(500, 600*a) + max(400, 500*a) = 500"
 >>> solver.solve_sum_minmax(eq, "a")
 1/6
 ```
-Yayyyy😆😆! You solved this complex-looking equation with 3 lines of code, 
-but what does it mean? Let's break it down: here the core function 
+Dang, that's so cool😆😆! In fact, this is a pretty complex problem, but 
+you just solved it with 3 lines of code. But wait, what does it mean? 
+Let's break it down: the core function 
 `solve_sum_minmax` takes in two required parameters 
 `equation` and `var_name`. `equation` takes in a string of the equation you want to solve 
 and `var_name` lets you define your variable with flexibility, such as `"a"`
-or `"x"`. Optionally, you can also pass in `"low"`, `"high"`, and `"decimal"`, 
+or `"x"` or any other characters in the alphabet except `"m"`. 
+Optionally, you can also pass in `"low"`, `"high"`, and `"decimal"`, 
 with details left out in the docstring if you are interested.  
 ****
 **Features in 0.0.3**: 
