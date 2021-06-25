@@ -1,4 +1,4 @@
-__What is this module?__:  
+**What is this module?**:  
 `solve-sum-minmax` is used to solve a sum of min/max equations in python by 
 taking advantage of the powerful sympy library. For instance, say you want to solve this equation: 
 min(400, 500x) + min(200, 500x) + min(0, 500x) = 700 
@@ -9,9 +9,8 @@ require you to set up all possible conditions, which
 might result in huge computation. 
 Currently, there isn't any available packages in Python
 that allows you to solve this kind of equation fastly with minimum codes. Thus,
-this package is developed to fill the void and hopefully be of use to the 
-broad population.  
----
+this package is developed to fill the void and hopefully be of use to the broad population.  
+...
 **Quick Start**:  
 Let's say you want to find the solution for the equation 
 min(500, 600a) + max(400, 500a) = 500. Solving it in Math makes you feel 
@@ -31,7 +30,7 @@ but what does it mean? Let's break it down: here the core function
 and `var_name` lets you define your variable with flexibility, such as `"a"`
 or `"x"`. Optionally, you can also pass in `"low"`, `"high"`, and `"decimal"`, 
 with details left out in the docstring if you are interested.  
----
+...
 **Features in 0.0.3**: 
 * Now the module is able to return exact values as fractions, such as 1/6.
 * When there isn't a solution, the function would return `None`. 
@@ -41,9 +40,7 @@ or in the second place.
 * you can use min and max together in one equation.
 * you can use + or -. 
 * you can have constants in front of min or max, such as 2*min(400, 400a).
-   
-
----
+...
 **Limitations**:  
 * One of the biggest limitations now is when there are infinitely many solutions, 
 the module cannot handle it well and would only return a single real number.
@@ -51,7 +48,7 @@ the module cannot handle it well and would only return a single real number.
 expressions, it currently doesn't support `"m"` as user-defined variable name.
 * With the reason same as above, the user needs to follow the format of the 
 equation carefully, or the module might break. 
----
+...
 **Contact**:  
 * **Email**: yz4175@columbia.edu
 * **Collaboration**: collaborations are welcomed, please send me an email if you 
