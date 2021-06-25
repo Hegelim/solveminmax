@@ -33,8 +33,8 @@ def solve_sum_minmax(equation, var_name, low=0, high=1.0, decimal=False):
         lists.append(match[0])
     products = product(*lists)
 
-    a_replace = re.sub(r"\*([a-z]+)", convert_letters, equation)
-    a_replace = a_replace.replace(r"=", "==")
+    validate = (re.sub(r"\*([a-z]+)", convert_letters, equation)
+                .replace(r"=", "=="))
     x = Symbol("x")
 
     for p in products:
@@ -51,7 +51,7 @@ def solve_sum_minmax(equation, var_name, low=0, high=1.0, decimal=False):
             continue
         elif (result[0] <= low) or (result[0]) >= high:
             continue
-        if eval(a_replace):
+        if eval(validate):
             if decimal:
                 return N(result[0])
             else:
@@ -60,5 +60,5 @@ def solve_sum_minmax(equation, var_name, low=0, high=1.0, decimal=False):
 
 
 if __name__ == "__main__":
-    eq = "800*x + min(300, 400*x) + min(300, 400*x) = 1000"
-    print(solve_sum_minmax(eq, "x"))
+    eq = "800*a + 2*min(300, 400*a) = 1000"
+    print(solve_sum_minmax(eq, "a"))
