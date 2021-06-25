@@ -1,4 +1,4 @@
-**What is this module?**:  
+**About**:  
 `solve-sum-minmax` is used to solve a sum of min/max equations in python by 
 taking advantage of the powerful sympy library. For instance, say you want to solve this equation: 
 min(400, 500x) + min(200, 500x) + min(0, 500x) = 700 
@@ -52,7 +52,9 @@ the module cannot handle it well and would only return a single real number.
 * Because the module is written in a way that it heavily depends on regular 
 expressions, it currently doesn't support `"m"` as user-defined variable name.
 * With the reason same as above, the user needs to follow the format of the 
-equation carefully, or the module might break. 
+equation carefully, or the module might break.
+* The equation must be univariate, i.e., there can only be one independent 
+variable. 
 ****
 **Contact**:  
 * **Email**: yz4175@columbia.edu
