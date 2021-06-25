@@ -35,20 +35,18 @@ def solve_sum_minmax(equation, var_name, low=0, high=1.0, decimal=False):
 
     a_replace = re.sub(r"\*([a-z]+)", convert_letters, equation)
     a_replace = a_replace.replace(r"=", "==")
-    x = var_name
-    exec(f"x = {Symbol(x)}")
-    print(var_name)
-    return
+    x = Symbol("x")
 
     for p in products:
-        knit = ""
+        knitted = ""
         for digit_part in digit_parts:
-            knit += digit_part[0]
+            knitted += digit_part[0]
         for i, operand in enumerate(p):
             operator = minmax_parts[i][0]
-            knit += f"{operator}{operand}"
-        knit += f"-{value}"
-        result = solve(eval(knit), a)
+            knitted += f"{operator}{operand}"
+        knitted += f"-{value}"
+        knitted = knitted.replace(var_name, "x")
+        result = solve(eval(knitted), x)
         if len(result) == 0:
             continue
         elif (result[0] <= low) or (result[0]) >= high:
@@ -62,5 +60,5 @@ def solve_sum_minmax(equation, var_name, low=0, high=1.0, decimal=False):
 
 
 if __name__ == "__main__":
-    eq = "min(500, 600*a) - min(500, 600*a) = 0"
-    print(solve_sum_minmax(eq, "a"))
+    eq = "800*x + min(300, 400*x) + min(300, 400*x) = 1000"
+    print(solve_sum_minmax(eq, "x"))
