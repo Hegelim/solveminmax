@@ -33,7 +33,8 @@ Let's break it down: the core function
 `equation` and `var_name`. `equation` takes in a string of the equation you want to solve 
 and `var_name` lets you define your variable with flexibility, such as `"a"`
 or `"x"` or any other characters in the alphabet except `"m"`. 
-Optionally, you can also pass in `"low"`, `"high"`, and `"decimal"`, 
+Optionally, you can also pass in `"low"`, `"high"`, which 
+lets you specify the range of your variable, and `"decimal"`, 
 with details left out in the docstring if you are interested.  
 ****
 **Features in 0.0.3**: 
