@@ -1,4 +1,4 @@
-**What is this module?**:  
+__What is this module?__:  
 `solve-sum-minmax` is used to solve a sum of min/max equations in python by 
 taking advantage of the powerful sympy library. For instance, say you want to solve this equation: 
 min(400, 500x) + min(200, 500x) + min(0, 500x) = 700 
