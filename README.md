@@ -18,41 +18,44 @@ would have to set up the conditions, then solve the check for each one of them,
 which sounds like a lot of work, especially for smart people like you 
 who knows how to take advantage of existing tools. So you ask yourself,
 "What if there is a library that lets me solve it like a piece of cake?" Well, 
-there is a library for you now! To solve your problem, simply type in these
+there is a library for you now! First off, you need to install it with 
+a few lines like below: 
+```
+pip install solve-sum-minmax
+```
+Then to solve your problem, simply type in these
 codes below: 
 ```
 from solve-sum-minmax import solver
 >>> eq = "min(500, 600*a) + max(400, 500*a) = 500"
->>> solver.solve_sum_minmax(eq, "a")
-1/6
+>>> solver.auto_solve(eq, "a")
+FiniteSet(1/6)
 ```
 Dang, that's so cool😆😆! In fact, this is a pretty complex problem, but 
 you just solved it with 3 lines of code. But wait, what does it mean? 
 Let's break it down: the core function 
-`solve_sum_minmax` takes in two required parameters 
+`auto_solve` takes in two required parameters 
 `equation` and `var_name`. `equation` takes in a string of the equation you want to solve 
 and `var_name` lets you define your variable with flexibility, such as `"a"`
-or `"x"` or any other characters in the alphabet except `"m"`. 
-Optionally, you can also pass in `"low"`, `"high"`, which 
-lets you specify the range of your variable, and `"decimal"`, 
-with details left out in the docstring if you are interested.  
+or `"x"`. You can also pass in `"low"`, `"high"`, which 
+lets you specify the range of your variable. Further details 
+are in the docstring if you are interested.  
 ****
-**Features in 0.0.3**: 
+**Features in 0.0.4**: 
 * Now the module is able to return exact values as fractions, such as 1/6.
+* Now the module fully supports interval solutions, represented by 
+  the powerful Interval object in sympy.
 * When there isn't a solution, the function would return `None`. 
 * you can put the variable either in the first place inside the parenthesis 
 or in the second place. 
-* you can use any characters in the alphabet except `"m"` for the variable.
 * you can use min and max together in one equation.
 * you can use + or -. 
 * you can have constants in front of min or max, such as 2*min(400, 400a).
 ****
 **Limitations**:  
-* One of the biggest limitations now is when there are infinitely many solutions, 
-the module cannot handle it well and would only return a single real number.
-* Because the module is written in a way that it heavily depends on regular 
-expressions, it currently doesn't support `"m"` as user-defined variable name.
-* With the reason same as above, the user needs to follow the format of the 
+* Currently, the module only supports `"a"` as the variable. 
+* Because the module heavily depends on regular expressions, 
+  the user needs to follow the format of the 
 equation carefully, or the module might break.
 * The equation must be univariate, i.e., there can only be one independent 
 variable. 
