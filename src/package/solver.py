@@ -1,10 +1,8 @@
 import re
-from sympy import S, N, FiniteSet, Symbol, EmptySet, Complexes, Interval
+from sympy import S, Symbol, EmptySet, Interval
 from sympy.solvers import solveset
 import numpy as np
-# TODO: what if the solution is a range?
 # TODO: what if the equation starts with a -?
-# TODO: what if the interval is open on one end
 # TODO: what if the interval is infinity on one end?
 # TODO: what if there are two numbers inside the min?
 
@@ -131,7 +129,6 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
     cons_var_terms = get_cons_var_terms(equation)
     set_points = find_set_points(minmax_terms, var_name)
     intervals = create_intervals(set_points)
-    results = []
     for interval in intervals:
         knitted_solver = knit_solver(intervals[0], minmax_terms, cons_var_terms, "a")
         knitted_solver = f"{knitted_solver} - {value_term}"
@@ -140,11 +137,10 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
         if result is S.Complexes:
             return Interval(low, high, left_open=left_open, right_open=right_open)
         elif list(result)[0] in interval:
-            results.append(result)
+            return result
         elif list(result)[0].evalf() == interval.start or list(result)[0].evalf() == interval.end:
             a = np.random.uniform(interval.start, interval.end)
             validate_eq = get_validate_eq(eq)
             if eval(validate_eq):
                 return interval.union(result)
-    return results
 
