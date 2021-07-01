@@ -3,6 +3,10 @@ from sympy import N, FiniteSet, Symbol, EmptySet, Complexes
 from sympy.solvers import solveset
 from itertools import product
 # TODO: what if the solution is a range?
+# TODO: what if the equation starts with a -?
+# TODO: what if the interval is open on one end
+# TODO: what if the interval is infinity on one end?
+# TODO: what if there are two numbers inside the min?
 
 
 def get_value_term(equation):
@@ -16,7 +20,7 @@ def get_minmax_terms(equation):
 
 
 def get_cons_var_terms(equation):
-    return re.findall(r"((\+|\-)\s*\d+(\*[^m])+)", equation)
+    return re.findall(r"(\+|\-)\s*(\d+)\s*\*\s*([a-z]+)", equation)
 
 
 def gen_combs(minmax_terms):
@@ -86,5 +90,5 @@ def solve_sum_minmax(equation, var_name, low=0, high=1.0, decimal=False):
 
 
 if __name__ == "__main__":
-    eq = "min(400, 500*a) - min(400, 500*a) = 0"
+    eq = "min(300, 400*a) = 300"
     print(solve_sum_minmax(eq, "a"))
