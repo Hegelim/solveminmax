@@ -9,10 +9,12 @@ import numpy as np
 
 def get_minmax_terms(equation):
     """Return a list of tuples. """
-    return re.findall(r"(\+|\-)\s*(\d*)\s*\**\s*(min|max)(\([^\)]+\))", equation)
+    return re.findall(r"(\+|\-)\s*(\d*)\s*\**\s*(min|max)(\([^\)]+\))",
+                      equation)
 
 
-def find_set_points(minmax_terms, var_name, low=0, high=1, left_open=True, right_open=True):
+def find_set_points(minmax_terms, var_name, low=0, high=1, left_open=True,
+                    right_open=True):
     """Return a list of sorted set points.
     There is at least one number. """
     pts = set()
@@ -29,24 +31,29 @@ def find_set_points(minmax_terms, var_name, low=0, high=1, left_open=True, right
     return sorted(pts)
 
 
-def create_intervals(set_points, low=0, high=1, left_open=True, right_open=True):
+def create_intervals(set_points, low=0, high=1, left_open=True,
+                     right_open=True):
     """Create a list of intervals based on set_points.
     a < x <= b. """
     intervals = []
     i = -1
     j = 0
-    required_interval = Interval(low, high, left_open=left_open, right_open=right_open)
+    required_interval = Interval(low, high, left_open=left_open,
+                                 right_open=right_open)
     while i < len(set_points):
         if i == -1:
-            interval = Interval(low, set_points[j], left_open=left_open, right_open=True)
+            interval = Interval(low, set_points[j], left_open=left_open,
+                                right_open=True)
             if interval is not EmptySet:
                 intervals.append(interval)
         elif j == len(set_points):
-            interval = Interval(set_points[i], high, left_open=True, right_open=right_open)
+            interval = Interval(set_points[i], high, left_open=True,
+                                right_open=right_open)
             if interval is not EmptySet:
                 intervals.append(interval)
         else:
-            intervals.append(Interval(set_points[i], set_points[j], left_open=True, right_open=True))
+            intervals.append(Interval(set_points[i], set_points[j],
+                                      left_open=True, right_open=True))
         i += 1
         j += 1
     return intervals
@@ -131,18 +138,20 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
     intervals = create_intervals(set_points)
     for interval in intervals:
         print(interval)
-        knitted_solver = knit_solver(intervals[0], minmax_terms, cons_var_terms, "a")
+        knitted_solver = knit_solver(intervals[0], minmax_terms,
+                                     cons_var_terms, "a")
         knitted_solver = f"{knitted_solver} - {value_term}"
         print(knitted_solver)
         a = Symbol("a")
         result = solveset(eval(knitted_solver), a)
         if result is S.Complexes:
-            return Interval(low, high, left_open=left_open, right_open=right_open)
+            return Interval(low, high, left_open=left_open,
+                            right_open=right_open)
         elif list(result)[0] in interval:
             return result
-        elif list(result)[0].evalf() == interval.start or list(result)[0].evalf() == interval.end:
+        elif list(result)[0].evalf() == interval.start or \
+                list(result)[0].evalf() == interval.end:
             a = np.random.uniform(interval.start, interval.end)
             validate_eq = get_validate_eq(eq)
             if eval(validate_eq):
                 return interval.union(result)
-

@@ -1,6 +1,6 @@
 **About**:  
-`solve-sum-minmax` is a Python module used to solve a sum of min/max equations 
-by taking advantage of the powerful sympy library. For instance, say you want to 
+`solve-sum-minmax` is a Python module that allows you to solve a sum of min/max equations 
+by taking advantage of the powerful `sympy` library. For instance, say you want to 
 solve this equation: min(400, 500x) + min(200, 500x) + min(0, 500x) = 700 
 with the assumption that x is within range (0, 1).  
 In Math, the rigorous way would 
@@ -16,22 +16,22 @@ Let's say you want to solve the equation
 min(500, 600a) + max(400, 500a) = 500. However, solving it in Math means you 
 would have to set up the conditions, then solve the check for each one of them, 
 which sounds like a lot of work, especially for smart people like you 
-who knows how to take advantage of existing tools. So you ask yourself,
+who know how to take advantage of existing tools. So you ask yourself,
 "What if there is a library that lets me solve it like a piece of cake?" Well, 
-there is a library for you now! First off, you need to install it via pip like 
-below:  
+there is a library for you now! First off, you need to install it via pip 
+in your terminal like below:  
 ```
 pip install solve-sum-minmax
 ```
 Then to solve your problem, simply type in these
-codes below: 
+codes in your Python console: 
 ```
 >>> from solve-sum-minmax import solver
 >>> eq = "min(500, 600*a) + max(400, 500*a) = 500"
 >>> solver.auto_solve(eq, "a")
 FiniteSet(1/6)
 ```
-Whola, you've got it! In fact, this is a pretty complex problem, but 
+Whola! In fact, this is a pretty complex problem, but 
 you just solved it with 3 lines of code. But hold on, what does it mean? 
 Let's break it down: the core function 
 `auto_solve` takes in two required parameters 
@@ -106,7 +106,7 @@ Version | Core Ideas | Return Rationals | Return Intervals
 v0.0.1 | numerical methods | No | No  
 v0.0.2 | numerical methods | No | No  
 v0.0.3 | combinations | Yes | No  
-v0.0.4 | Intervals | Yes | Yes
+v0.0.4 | intervals | Yes | Yes
 ****
 **Contact**:  
 * **Email**: yz4175@columbia.edu
