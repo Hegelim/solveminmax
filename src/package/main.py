@@ -25,10 +25,9 @@ eqs = [
 
 
 if __name__ == "__main__":
-    eq = eqs[6]
-    print(solver.get_minmax_terms(eq))
-    # for i, eq in enumerate(eqs):
-    #     print(f"Solving {i + 1}: {eq}...")
-    #     sol = solver.auto_solve(eq, "a")
-    #     print(f"Solution is {sol}")
-    #     print("==========================")
+    for i, eq in enumerate(eqs):
+        print(f"Solving {i + 1}: {eq}...")
+        print(solver.get_cons_var_terms(eq))
+        # sol = solver.auto_solve(eq, "a")
+        # print(f"Solution is {sol}")
+        # print("==========================")

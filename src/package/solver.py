@@ -3,6 +3,7 @@ from sympy import S, Symbol, EmptySet, Interval, FiniteSet
 from sympy.solvers import solveset
 import numpy as np
 from src.package.minmax_term import MinMaxTerm
+from src.package.cons_var_term import ConsVarTerm
 # TODO: what if the equation starts with a -?
 # TODO: what if the interval is infinity on one end?
 # TODO: what if there are two numbers inside the min?
@@ -16,6 +17,22 @@ def get_minmax_terms(equation):
     for term in minmax_terms:
         minmax_objects.append(MinMaxTerm(term))
     return minmax_objects
+
+
+def get_cons_var_terms(equation):
+    match_list = re.findall(r"(\+|\-)\s*(\d+)\s*\*\s*([a-z]+)", equation)
+    i = 0
+    n = len(match_list)
+    while i < len(match_list):
+        if "min" in match_list[i][2] or "max" in match_list[i][2]:
+            match_list.pop(i)
+            i -= 1
+            n -= 1
+        i += 1
+    cons_var_objects = []
+    for term in match_list:
+        cons_var_objects.append(ConsVarTerm(term))
+    return cons_var_objects
 
 
 def find_set_points(minmax_terms, var_name):
@@ -47,13 +64,13 @@ def create_intervals(set_points, low=0, high=1, left_open=True,
     j = 0
     while i < len(set_points):
         if i == -1:
-            interval = Interval(low, set_points[j], left_open=left_open,
-                                right_open=True)
+            interval = Interval(low, set_points[j],
+                                left_open=left_open, right_open=True)
             if interval is not EmptySet:
                 intervals.append(interval)
         elif j == len(set_points):
-            interval = Interval(set_points[i], high, left_open=True,
-                                right_open=right_open)
+            interval = Interval(set_points[i], high,
+                                left_open=True, right_open=right_open)
             if interval is not EmptySet:
                 intervals.append(interval)
         else:
@@ -68,31 +85,9 @@ def get_validate_eq(equation):
     return equation.replace("=", "==")
 
 
-def get_parts(eq):
-    return re.findall(r"[\+\-][^\+\-=]*", eq)
-
-
 def random_interval(interval):
     """Generate a random number from the interval. """
     return np.random.uniform(interval.start, interval.end)
-
-
-def get_left_right(minmax_tuple):
-    match = re.findall(r"\s*(\d+.*),\s*(\d+[^\)]*)\s*", minmax_tuple)
-    return match[0][0], match[0][1]
-
-
-def get_cons_var_terms(equation):
-    match_list = re.findall(r"(\+|\-)\s*(\d+)\s*\*\s*([a-z]+)", equation)
-    i = 0
-    n = len(match_list)
-    while i < len(match_list):
-        if "min" in match_list[i][2] or "max" in match_list[i][2]:
-            match_list.pop(i)
-            i -= 1
-            n -= 1
-        i += 1
-    return match_list
 
 
 def get_value_term(equation):
@@ -102,18 +97,15 @@ def get_value_term(equation):
 def knit_solver(interval, minmax_terms, cons_var_terms, var_name):
     solver = ""
     for term in minmax_terms:
-        operator = term.operator()
-        coef = term.coef()
-        minmax = term.minmax_op()
-        minmax_tuple = term.minmax_tuple()
-        if var_name not in minmax_tuple:
-            val = eval(f"{minmax}{minmax_tuple}")
-            solver += f"{operator}{coef}*{val}"
+        if var_name not in term.minmax_tuple():
+            val = eval(f"{term.minmax_op()}{term.minmax_tuple()}")
+            solver += f"{term.operator()}{term.coef()}*{val}"
         else:
             rand = random_interval(interval)
-            index = minmax_tuple.rfind(var_name)
-            replaced = minmax_tuple[:index] + "rand" + minmax_tuple[index + 1:]
-            replaced = f"{minmax}{replaced}"
+            index = term.minmax_tuple().rfind(var_name)
+            replaced = term.minmax_tuple()[:index] + "rand" \
+                       + term.minmax_tuple()[index + 1:]
+            replaced = f"{term.minmax_op()}{replaced}"
             left, right = term.left_right_half()
             if var_name not in left:
                 non_var_part = left
@@ -127,25 +119,26 @@ def knit_solver(interval, minmax_terms, cons_var_terms, var_name):
                 print(e)
                 return
             if val != float(non_var_part):
-                solver += f"{operator}{coef}*{var_part}"
+                solver += f"{term.operator()}{term.coef()}*{var_part}"
             else:
-                solver += f"{operator}{coef}*{non_var_part}"
+                solver += f"{term.operator()}{term.coef()}*{non_var_part}"
     for term in cons_var_terms:
-        solver += f"{term[0]}{term[1]}*{term[2]}"
+        solver += f"{term.operator()}{term.coef()}*{term.var()}"
     return solver
+
+
+def reformat_solve(knit, value_term):
+    s = f"{knit} - {value_term}"
+    a = Symbol("a")
+    return solveset(eval(s), a)
 
 
 def solve_linear_eq(cons_var_terms, value_term, low, high,
                     left_open, right_open):
     knit = ""
-    for cons_var_term in cons_var_terms:
-        operator = cons_var_term[0]
-        coef = cons_var_term[1]
-        variable = cons_var_term[2]
-        knit += f"{operator}{coef}*{variable}"
-    knit = f"{knit} - {value_term}"
-    a = Symbol("a")
-    result = solveset(eval(knit), a)
+    for term in cons_var_terms:
+        knit += f"{term.operator()}{term.coef()}*{term.var()}"
+    result = reformat_solve(knit, value_term)
     if result is S.Complexes:
         return result.intersect(Interval(low, high, left_open=left_open,
                                          right_open=right_open))
@@ -157,10 +150,8 @@ def minmax_replace_zeros(minmax_terms):
     i = 0
     n = len(minmax_terms)
     while i < n:
-        operator = minmax_terms[i].operator()
-        coef = minmax_terms[i].coef()
-        minmax_op = minmax_terms[i].minmax_op()
-        left, right = minmax_terms[i].left_right_half()
+        term = minmax_terms[i]
+        left, right = term.left_right_half()
         if "a" in left and "*" in left:
             index = left.find("*")
             num = float(left[:index])
@@ -174,8 +165,8 @@ def minmax_replace_zeros(minmax_terms):
             i += 1
             continue
         if num == 0:
-            minmax_terms[i] = MinMaxTerm((operator, coef,
-                                          minmax_op,
+            minmax_terms[i] = MinMaxTerm((term.operator(), term.coef(),
+                                          term.minmax_op(),
                                           f"(0,{non_var_term})"))
         i += 1
 
@@ -183,19 +174,17 @@ def minmax_replace_zeros(minmax_terms):
 def solve_no_minmax_var(minmax_terms, cons_var_terms, value_term):
     knit = ""
     for term in minmax_terms:
-        operator = term.operator()
-        coef = term.coef()
-        minmax_op = term.minmax_op()
-        minmax_tuple = term.minmax_tuple()
-        knit += f"{operator}{coef}*{minmax_op}{minmax_tuple}"
-    for cons_var_term in cons_var_terms:
-        operator = cons_var_term[0]
-        coef = cons_var_term[1]
-        variable = cons_var_term[2]
-        knit += f"{operator}{coef}*{variable}"
+        knit += f"{term.operator()}{term.coef()}*" \
+                f"{term.minmax_op()}{ term.minmax_tuple()}"
+    for term in cons_var_terms:
+        knit += f"{term.operator()}{term.coef()}*{term.var()}"
     knit = f"{knit} - {value_term}"
     a = Symbol("a")
     return solveset(eval(knit), a)
+
+
+def get_next(result):
+    return next(iter(result))
 
 
 def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
@@ -227,9 +216,7 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
                                                right_open=right_open))
         knitted_solver = knit_solver(interval, minmax_terms,
                                      cons_var_terms, "a")
-        knitted_solver = f"{knitted_solver} - {value_term}"
-        a = Symbol("a")
-        result = solveset(eval(knitted_solver), a)
+        result = reformat_solve(knitted_solver, value_term)
         if result is S.Complexes:
             temp_interval = interval
             validate_eq = get_validate_eq(eq)
@@ -242,10 +229,10 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
             results.append(temp_interval)
         elif result is EmptySet:
             continue
-        elif list(result)[0] in interval:
+        elif get_next(result) in interval:
             """If it's a FiniteSet, return. """
             return result
-        elif list(result)[0].evalf() == interval.start:
+        elif get_next(result).evalf() == interval.start:
             a = random_interval(interval)
             validate_eq = get_validate_eq(eq)
             if eval(validate_eq):
@@ -257,7 +244,7 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
                     results.append(temp_interval.union(FiniteSet(a)))
                 else:
                     results.append(temp_interval)
-        elif list(result)[0].evalf() == interval.end:
+        elif get_next(result).evalf() == interval.end:
             a = random_interval(interval)
             validate_eq = get_validate_eq(eq)
             if eval(validate_eq):

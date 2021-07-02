@@ -3,7 +3,8 @@ import re
 
 class MinMaxTerm:
     def __init__(self, minmax_term):
-        """minmax_term is a tuple that looks like ('+', '', 'min', '(400, 400*a)')"""
+        """minmax_term is a tuple that looks like
+        ('+', '', 'min', '(400, 400*a)')"""
         self._operator = minmax_term[0]
         self._coef = minmax_term[1]
         self._minmax_op = minmax_term[2]
