@@ -130,8 +130,10 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
     set_points = find_set_points(minmax_terms, var_name)
     intervals = create_intervals(set_points)
     for interval in intervals:
+        print(interval)
         knitted_solver = knit_solver(intervals[0], minmax_terms, cons_var_terms, "a")
         knitted_solver = f"{knitted_solver} - {value_term}"
+        print(knitted_solver)
         a = Symbol("a")
         result = solveset(eval(knitted_solver), a)
         if result is S.Complexes:
