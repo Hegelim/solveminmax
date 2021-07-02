@@ -2,6 +2,7 @@ import re
 from sympy import S, Symbol, EmptySet, Interval, FiniteSet
 from sympy.solvers import solveset
 import numpy as np
+from src.package.minmax_term import MinMaxTerm
 # TODO: what if the equation starts with a -?
 # TODO: what if the interval is infinity on one end?
 # TODO: what if there are two numbers inside the min?
@@ -9,27 +10,28 @@ import numpy as np
 
 def get_minmax_terms(equation):
     """Return a list of tuples. """
-    return re.findall(r"(\+|\-)\s*(\d*)\s*\**\s*(min|max)(\([^\)]+\))",
-                      equation)
+    minmax_terms = re.findall(r"(\+|\-)\s*(\d*)\s*\**\s*(min|max)(\([^\)]+\))",
+                              equation)
+    minmax_objects = []
+    for term in minmax_terms:
+        minmax_objects.append(MinMaxTerm(term))
+    return minmax_objects
 
 
-def find_set_points(minmax_terms, var_name, low=0, high=1, left_open=True,
-                    right_open=True):
+def find_set_points(minmax_terms, var_name):
     """Return a list of sorted set points.
     Return an empty list there are variables but all coefficients are 0,
     or there are simply no variables. """
     pts = set()
     for term in minmax_terms:
-        match = re.findall(r"\s*(\d+).*,\s*(\d+)\s*", term[3])
-        left = float(match[0][0])
-        right = float(match[0][1])
-        splitted = term[3].split(",")
-        if var_name in splitted[0]:
+        left, right = term.left_right_nums()
+        left_half, right_half = term.left_right_half()
+        if var_name in left_half:
             try:
                 pts.add(right / left)
             except ZeroDivisionError:
                 continue
-        elif var_name in splitted[1]:
+        elif var_name in right_half:
             try:
                 pts.add(left / right)
             except ZeroDivisionError:
@@ -39,8 +41,7 @@ def find_set_points(minmax_terms, var_name, low=0, high=1, left_open=True,
 
 def create_intervals(set_points, low=0, high=1, left_open=True,
                      right_open=True):
-    """Create a list of intervals based on set_points.
-    a < x <= b. """
+    """Create a list of intervals based on set_points. """
     intervals = []
     i = -1
     j = 0
@@ -72,6 +73,7 @@ def get_parts(eq):
 
 
 def random_interval(interval):
+    """Generate a random number from the interval. """
     return np.random.uniform(interval.start, interval.end)
 
 
@@ -94,25 +96,25 @@ def get_cons_var_terms(equation):
 
 
 def get_value_term(equation):
-    return re.search(r"=\s*(\d+)", equation).group(1)
+    return re.findall(r"=\s*(\d+)", equation)[0]
 
 
 def knit_solver(interval, minmax_terms, cons_var_terms, var_name):
     solver = ""
     for term in minmax_terms:
-        operator = term[0]
-        coef = 1 if term[1] == "" else float(term[1])
-        minmax = term[2]
-        minmax_tuple = term[3]
+        operator = term.operator()
+        coef = term.coef()
+        minmax = term.minmax_op()
+        minmax_tuple = term.minmax_tuple()
         if var_name not in minmax_tuple:
             val = eval(f"{minmax}{minmax_tuple}")
             solver += f"{operator}{coef}*{val}"
         else:
             rand = random_interval(interval)
-            index = term[3].rfind(var_name)
-            replaced = term[3][:index] + "rand" + term[3][index + 1:]
+            index = minmax_tuple.rfind(var_name)
+            replaced = minmax_tuple[:index] + "rand" + minmax_tuple[index + 1:]
             replaced = f"{minmax}{replaced}"
-            left, right = get_left_right(term[3])
+            left, right = term.left_right_half()
             if var_name not in left:
                 non_var_part = left
                 var_part = right
@@ -155,11 +157,10 @@ def minmax_replace_zeros(minmax_terms):
     i = 0
     n = len(minmax_terms)
     while i < n:
-        operator = minmax_terms[i][0]
-        coef = minmax_terms[i][1]
-        minmax_op = minmax_terms[i][2]
-        paren_term = minmax_terms[i][3]
-        left, right = get_left_right(paren_term)
+        operator = minmax_terms[i].operator()
+        coef = minmax_terms[i].coef()
+        minmax_op = minmax_terms[i].minmax_op()
+        left, right = minmax_terms[i].left_right_half()
         if "a" in left and "*" in left:
             index = left.find("*")
             num = float(left[:index])
@@ -173,18 +174,19 @@ def minmax_replace_zeros(minmax_terms):
             i += 1
             continue
         if num == 0:
-            minmax_terms[i] = (operator, coef, minmax_op,
-                               f"(0,{non_var_term})")
+            minmax_terms[i] = MinMaxTerm((operator, coef,
+                                          minmax_op,
+                                          f"(0,{non_var_term})"))
         i += 1
 
 
 def solve_no_minmax_var(minmax_terms, cons_var_terms, value_term):
     knit = ""
     for term in minmax_terms:
-        operator = term[0]
-        coef = "1" if term[1] == "" else term[1]
-        minmax_op = term[2]
-        minmax_tuple = term[3]
+        operator = term.operator()
+        coef = term.coef()
+        minmax_op = term.minmax_op()
+        minmax_tuple = term.minmax_tuple()
         knit += f"{operator}{coef}*{minmax_op}{minmax_tuple}"
     for cons_var_term in cons_var_terms:
         operator = cons_var_term[0]
@@ -241,9 +243,10 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
         elif result is EmptySet:
             continue
         elif list(result)[0] in interval:
+            """If it's a FiniteSet, return. """
             return result
         elif list(result)[0].evalf() == interval.start:
-            a = np.random.uniform(interval.start, interval.end)
+            a = random_interval(interval)
             validate_eq = get_validate_eq(eq)
             if eval(validate_eq):
                 temp_interval = interval.union(result)
@@ -255,7 +258,7 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
                 else:
                     results.append(temp_interval)
         elif list(result)[0].evalf() == interval.end:
-            a = np.random.uniform(interval.start, interval.end)
+            a = random_interval(interval)
             validate_eq = get_validate_eq(eq)
             if eval(validate_eq):
                 temp_interval = interval.union(result)
