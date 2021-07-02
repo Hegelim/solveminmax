@@ -1,5 +1,5 @@
 import re
-from sympy import S, Symbol, EmptySet, Interval
+from sympy import S, Symbol, EmptySet, Interval, FiniteSet
 from sympy.solvers import solveset
 import numpy as np
 # TODO: what if the equation starts with a -?
@@ -18,7 +18,6 @@ def find_set_points(minmax_terms, var_name, low=0, high=1, left_open=True,
     """Return a list of sorted set points.
     There is at least one number. """
     pts = set()
-    interval = Interval(low, high, left_open=left_open, right_open=right_open)
     for term in minmax_terms:
         match = re.findall(r"\s*(\d+).*,\s*(\d+)\s*", term[3])
         left = float(match[0][0])
@@ -38,8 +37,6 @@ def create_intervals(set_points, low=0, high=1, left_open=True,
     intervals = []
     i = -1
     j = 0
-    required_interval = Interval(low, high, left_open=left_open,
-                                 right_open=right_open)
     while i < len(set_points):
         if i == -1:
             interval = Interval(low, set_points[j], left_open=left_open,
@@ -136,6 +133,7 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
     cons_var_terms = get_cons_var_terms(equation)
     set_points = find_set_points(minmax_terms, var_name)
     intervals = create_intervals(set_points)
+    results = []
     for interval in intervals:
         print(interval)
         knitted_solver = knit_solver(intervals[0], minmax_terms,
@@ -144,14 +142,38 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
         print(knitted_solver)
         a = Symbol("a")
         result = solveset(eval(knitted_solver), a)
+        print(result)
         if result is S.Complexes:
             return Interval(low, high, left_open=left_open,
                             right_open=right_open)
+        elif result is EmptySet:
+            continue
         elif list(result)[0] in interval:
             return result
-        elif list(result)[0].evalf() == interval.start or \
-                list(result)[0].evalf() == interval.end:
+        elif list(result)[0].evalf() == interval.start:
             a = np.random.uniform(interval.start, interval.end)
             validate_eq = get_validate_eq(eq)
             if eval(validate_eq):
-                return interval.union(result)
+                temp_interval = interval.union(result)
+                a = interval.end
+                if a == high:
+                    results.append(temp_interval)
+                elif eval(validate_eq):
+                    results.append(temp_interval.union(FiniteSet(a)))
+                else:
+                    results.append(temp_interval)
+        elif list(result)[0].evalf() == interval.end:
+            a = np.random.uniform(interval.start, interval.end)
+            validate_eq = get_validate_eq(eq)
+            if eval(validate_eq):
+                temp_interval = interval.union(result)
+                a = Interval.start
+                if a == low:
+                    results.append(temp_interval)
+                elif eval(validate_eq):
+                    results.append(temp_interval.union(FiniteSet(a)))
+                else:
+                    results.append(temp_interval)
+    if len(results) == 0:
+        return None
+    return results[0]
