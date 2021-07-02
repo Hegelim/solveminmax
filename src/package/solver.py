@@ -18,7 +18,8 @@ def get_minmax_terms(equation):
 def find_set_points(minmax_terms, var_name, low=0, high=1, left_open=True,
                     right_open=True):
     """Return a list of sorted set points.
-    There is at least one number. """
+    Return an empty list if all fractions are divided by 0.
+    Otherwise, there is at least one real number. """
     pts = set()
     for term in minmax_terms:
         match = re.findall(r"\s*(\d+).*,\s*(\d+)\s*", term[3])
@@ -26,9 +27,15 @@ def find_set_points(minmax_terms, var_name, low=0, high=1, left_open=True,
         right = float(match[0][1])
         splitted = term[3].split(",")
         if var_name in splitted[0]:
-            pts.add(right / left)
+            try:
+                pts.add(right / left)
+            except ZeroDivisionError:
+                continue
         elif var_name in splitted[1]:
-            pts.add(left / right)
+            try:
+                pts.add(left / right)
+            except ZeroDivisionError:
+                continue
     return sorted(pts)
 
 
@@ -128,25 +135,74 @@ def knit_solver(interval, minmax_terms, cons_var_terms, var_name):
     return solver
 
 
+def solve_linear_eq(cons_var_terms, value_term, low, high,
+                    left_open, right_open):
+    knit = ""
+    for cons_var_term in cons_var_terms:
+        operator = cons_var_term[0]
+        coef = cons_var_term[1]
+        variable = cons_var_term[2]
+        knit += f"{operator}{coef}*{variable}"
+    knit = f"{knit} - {value_term}"
+    a = Symbol("a")
+    result = solveset(eval(knit), a)
+    if result is S.Complexes:
+        return result.intersect(Interval(low, high, left_open=left_open,
+                                         right_open=right_open))
+    else:
+        return result
+
+
+def take_out_zeros(minmax_terms):
+    i = 0
+    n = len(minmax_terms)
+    while i < n:
+        paren_term = minmax_terms[i][3]
+        left, right = get_left_right(paren_term)
+        if "a" in left:
+            index = left.find("*")
+            num = float(left[:index])
+        elif "a" in right:
+            index = right.find("*")
+            num = float(right[:index])
+        else:
+            """If the term does not contain variable. """
+            continue
+        if num == 0:
+            minmax_terms.pop(i)
+            i -= 1
+            n -= 1
+        i += 1
+
+
 def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
     equation = f"+{eq}"
     value_term = get_value_term(equation)
     minmax_terms = get_minmax_terms(equation)
     cons_var_terms = get_cons_var_terms(equation)
+    take_out_zeros(minmax_terms)
+
+    if len(minmax_terms) == 0:
+        """If there are no minmax_terms, it becomes a 
+        linear equation with one variable. """
+        return solve_linear_eq(cons_var_terms, value_term,
+                               low, high,
+                               left_open=left_open,
+                               right_open=right_open)
+
     set_points = find_set_points(minmax_terms, var_name)
+
     intervals = create_intervals(set_points)
     results = []
     for interval in intervals:
-        interval = interval.intersect(Interval(low, high, left_open=left_open,
+        interval = interval.intersect(Interval(low, high,
+                                               left_open=left_open,
                                                right_open=right_open))
-        print(f"Current interval is {interval}")
         knitted_solver = knit_solver(interval, minmax_terms,
                                      cons_var_terms, "a")
         knitted_solver = f"{knitted_solver} - {value_term}"
-        print(knitted_solver)
         a = Symbol("a")
         result = solveset(eval(knitted_solver), a)
-        print(result)
         if result is S.Complexes:
             temp_interval = interval
             validate_eq = get_validate_eq(eq)

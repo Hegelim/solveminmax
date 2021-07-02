@@ -71,10 +71,7 @@ Before we delve into explanations in details, let's define a few terms:
 * **value_term**: the value you want to solve your equation for, here it's `600`. 
 * **minmax_term**: it is what it means in English, for example, `max(600*a, 400)`.
 * **cons_var_term**: terms with constants times variables, such as `50*a`.
-* **cons_term**: the constants on the left-hand side of the equation, here 
-it's `20`.
-  
-  
+
 In brief, what you **can** do include:
 * put the variable either in the 1st or 2nd place inside the parenthesis, for 
 example, either `min(200, 300*a)` or `min(300*a, 200)` is fine.
@@ -87,10 +84,12 @@ What you **can't** do include:
 * use `==` instead of `=`.
 * for the `cons_var_term`, have variables before constants, such as `a*50` 
 instead of `50*a`.
-  
 * missing any parenthesis. 
 * use other operators instead of + or -.
 * missing any necessary `*` operator for each variable.
+* put any constants on the left-hand side of the equation. Do me a favor, if 
+you have any constants, subtract it from the right-hand side and 
+  rearrange your terms before using the module. 
 ****
 **Limitations**:  
 * Currently, the module only supports `"a"` as the variable. 

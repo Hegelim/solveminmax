@@ -67,5 +67,27 @@ class Test:
         eq = "max(400*a, 100) = 50"
         assert solver.auto_solve(eq, "a") is None
 
+    def test_14(self):
+        eq = "20*a - 20*a = 0"
+        assert solver.auto_solve(eq, "a") == Interval(0, 1, left_open=True,
+                                                      right_open=True)
+
+    def test_15(self):
+        eq = "10*a = 150"
+        assert solver.auto_solve(eq, "a") == FiniteSet(15)
+
+    def test_16(self):
+        eq = "min(20, 0*a) + 50*a = 100"
+        assert solver.auto_solve(eq, "a") == FiniteSet(2)
+
+    def test_17(self):
+        eq = "min(20, 0*a) + min(20, 30*a) + 50*a = 50"
+        assert solver.auto_solve(eq, "a") == FiniteSet(5/8)
+
+    def test_18(self):
+        eq = "0*a + min(20, 30*a) = 15"
+        assert solver.auto_solve(eq, "a") == FiniteSet(1/2)
+
+
 
 
