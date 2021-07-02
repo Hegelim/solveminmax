@@ -3,6 +3,7 @@ README.md
 pyproject.toml
 setup.cfg
 src/package/__init__.py
+src/package/main.py
 src/package/solver.py
 src/solve_sum_minmax.egg-info/PKG-INFO
 src/solve_sum_minmax.egg-info/SOURCES.txt
