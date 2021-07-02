@@ -79,6 +79,8 @@ example, either `min(200, 300*a)` or `min(300*a, 200)` is fine.
 * use + and/or -. 
 * have constants in front of min or max, such as `2*min(400, 400a)`.
 * have any space between each component.
+* have leading 0s before variable, such as `min(0*a, 200)`.
+* have constants inside min or max, such as `min(20, 30)`.
 
 What you **can't** do include: 
 * use `==` instead of `=`.
