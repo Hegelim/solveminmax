@@ -2,8 +2,6 @@ import re
 from sympy import S, Symbol, EmptySet, Interval, FiniteSet
 from sympy.solvers import solveset
 import numpy as np
-
-
 # TODO: what if the equation starts with a -?
 # TODO: what if the interval is infinity on one end?
 # TODO: what if there are two numbers inside the min?
@@ -18,8 +16,8 @@ def get_minmax_terms(equation):
 def find_set_points(minmax_terms, var_name, low=0, high=1, left_open=True,
                     right_open=True):
     """Return a list of sorted set points.
-    Return an empty list if all fractions are divided by 0.
-    Otherwise, there is at least one real number. """
+    Return an empty list there are variables but all coefficients are 0,
+    or there are simply no variables. """
     pts = set()
     for term in minmax_terms:
         match = re.findall(r"\s*(\d+).*,\s*(\d+)\s*", term[3])
@@ -153,26 +151,49 @@ def solve_linear_eq(cons_var_terms, value_term, low, high,
         return result
 
 
-def take_out_zeros(minmax_terms):
+def minmax_replace_zeros(minmax_terms):
     i = 0
     n = len(minmax_terms)
     while i < n:
+        operator = minmax_terms[i][0]
+        coef = minmax_terms[i][1]
+        minmax_op = minmax_terms[i][2]
         paren_term = minmax_terms[i][3]
         left, right = get_left_right(paren_term)
-        if "a" in left:
+        if "a" in left and "*" in left:
             index = left.find("*")
             num = float(left[:index])
-        elif "a" in right:
+            non_var_term = right
+        elif "a" in right and "*" in right:
             index = right.find("*")
             num = float(right[:index])
+            non_var_term = left
         else:
             """If the term does not contain variable. """
+            i += 1
             continue
         if num == 0:
-            minmax_terms.pop(i)
-            i -= 1
-            n -= 1
+            minmax_terms[i] = (operator, coef, minmax_op,
+                               f"(0,{non_var_term})")
         i += 1
+
+
+def solve_no_minmax_var(minmax_terms, cons_var_terms, value_term):
+    knit = ""
+    for term in minmax_terms:
+        operator = term[0]
+        coef = "1" if term[1] == "" else term[1]
+        minmax_op = term[2]
+        minmax_tuple = term[3]
+        knit += f"{operator}{coef}*{minmax_op}{minmax_tuple}"
+    for cons_var_term in cons_var_terms:
+        operator = cons_var_term[0]
+        coef = cons_var_term[1]
+        variable = cons_var_term[2]
+        knit += f"{operator}{coef}*{variable}"
+    knit = f"{knit} - {value_term}"
+    a = Symbol("a")
+    return solveset(eval(knit), a)
 
 
 def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
@@ -180,17 +201,21 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
     value_term = get_value_term(equation)
     minmax_terms = get_minmax_terms(equation)
     cons_var_terms = get_cons_var_terms(equation)
-    take_out_zeros(minmax_terms)
+    minmax_replace_zeros(minmax_terms)
 
     if len(minmax_terms) == 0:
         """If there are no minmax_terms, it becomes a 
-        linear equation with one variable. """
+        linear equation. """
         return solve_linear_eq(cons_var_terms, value_term,
                                low, high,
                                left_open=left_open,
                                right_open=right_open)
 
     set_points = find_set_points(minmax_terms, var_name)
+    if len(set_points) == 0:
+        """If there are no set_points, it means there are no 
+        variables in minmax_terms. """
+        return solve_no_minmax_var(minmax_terms, cons_var_terms, value_term)
 
     intervals = create_intervals(set_points)
     results = []
