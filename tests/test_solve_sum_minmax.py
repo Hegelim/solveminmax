@@ -54,10 +54,16 @@ class Test:
                                                       right_open=False)
 
     def test_11(self):
+        eq = "max(300, 400*a) = 300"
+        assert solver.auto_solve(eq, "a") == Interval(0, 3/4,
+                                                      left_open=True,
+                                                      right_open=False)
+
+    def test_12(self):
         eq = "min(400*a, 100) = 500"
         assert solver.auto_solve(eq, "a") is None
 
-    def test_12(self):
+    def test_13(self):
         eq = "max(400*a, 100) = 50"
         assert solver.auto_solve(eq, "a") is None
 

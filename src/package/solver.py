@@ -2,6 +2,8 @@ import re
 from sympy import S, Symbol, EmptySet, Interval, FiniteSet
 from sympy.solvers import solveset
 import numpy as np
+
+
 # TODO: what if the equation starts with a -?
 # TODO: what if the interval is infinity on one end?
 # TODO: what if there are two numbers inside the min?
@@ -24,9 +26,9 @@ def find_set_points(minmax_terms, var_name, low=0, high=1, left_open=True,
         right = float(match[0][1])
         splitted = term[3].split(",")
         if var_name in splitted[0]:
-            pts.add(right/left)
+            pts.add(right / left)
         elif var_name in splitted[1]:
-            pts.add(left/right)
+            pts.add(left / right)
     return sorted(pts)
 
 
@@ -103,7 +105,7 @@ def knit_solver(interval, minmax_terms, cons_var_terms, var_name):
         else:
             rand = random_interval(interval)
             index = term[3].rfind(var_name)
-            replaced = term[3][:index] + "rand" + term[3][index+1:]
+            replaced = term[3][:index] + "rand" + term[3][index + 1:]
             replaced = f"{minmax}{replaced}"
             left, right = get_left_right(term[3])
             if var_name not in left:
@@ -135,8 +137,10 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
     intervals = create_intervals(set_points)
     results = []
     for interval in intervals:
-        print(interval)
-        knitted_solver = knit_solver(intervals[0], minmax_terms,
+        interval = interval.intersect(Interval(low, high, left_open=left_open,
+                                               right_open=right_open))
+        print(f"Current interval is {interval}")
+        knitted_solver = knit_solver(interval, minmax_terms,
                                      cons_var_terms, "a")
         knitted_solver = f"{knitted_solver} - {value_term}"
         print(knitted_solver)
@@ -144,8 +148,15 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
         result = solveset(eval(knitted_solver), a)
         print(result)
         if result is S.Complexes:
-            return Interval(low, high, left_open=left_open,
-                            right_open=right_open)
+            temp_interval = interval
+            validate_eq = get_validate_eq(eq)
+            a = interval.start
+            if a != low and eval(validate_eq):
+                temp_interval = temp_interval.union(FiniteSet(a))
+            a = interval.end
+            if a != high and eval(validate_eq):
+                temp_interval = temp_interval.union(FiniteSet(a))
+            results.append(temp_interval)
         elif result is EmptySet:
             continue
         elif list(result)[0] in interval:
@@ -176,4 +187,7 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
                     results.append(temp_interval)
     if len(results) == 0:
         return None
-    return results[0]
+    elif len(results) == 1:
+        return results[0]
+    else:
+        return results[0].union(results[1])
