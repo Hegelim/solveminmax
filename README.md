@@ -1,3 +1,7 @@
+[![Github All Releases](https://img.shields.io/github/license/Hegelim/solve-sum-minmax)]()
+[![Github All Releases](https://img.shields.io/github/v/release/Hegelim/solve-sum-minmax)]()
+[![Github All Releases](https://img.shields.io/github/downloads/Hegelim/solve-sum-minmax/total)]()
+[![Github All Releases](https://img.shields.io/github/issues/Hegelim/solve-sum-minmax)]()  
 **About**:  
 `solve-sum-minmax` is a Python module that allows you to solve a sum of min/max equations 
 by taking advantage of the powerful `sympy` library. For instance, say you want to 
