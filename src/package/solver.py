@@ -191,10 +191,7 @@ def solve_no_minmax_var(minmax_terms, cons_var_terms, value_term):
 
 
 def get_next(result):
-    """Get next item in result.
-    Args:
-          result: set, such as FiniteSet(0.5).
-    """
+    """Get next item in the result set. """
     return next(iter(result))
 
 
@@ -270,10 +267,8 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
     if len(minmax_terms) == 0:
         """If there are no minmax_terms, it becomes a 
         linear equation. """
-        return solve_linear_eq(cons_var_terms, value_term,
-                               low, high,
-                               left_open=left_open,
-                               right_open=right_open)
+        return solve_linear_eq(cons_var_terms, value_term, low, high,
+                               left_open, right_open)
 
     set_points = find_set_points(minmax_terms, var_name)
     if len(set_points) == 0:
@@ -299,11 +294,14 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
             """Skip to the next iteration. """
             continue
         elif get_next(result) in interval:
-            """If it's a FiniteSet, return. """
+            """If it's a FiniteSet and falls in the interval, return. """
             return result
         elif get_next_eval(result) == interval.start \
                 or get_next_eval(result) == interval.end:
             """If the result falls on either end point, check the other 
             end point and union it if necessary. """
             append_interval_endpoints(interval, eq, result, results, low, high)
+        else:
+            """For all other cases, skip. """
+            continue
     return process_results(results)
