@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: solve-sum-minmax
-Version: 0.0.4
+Version: 0.1.0
 Summary: A package to solve the sum of min/max equations
 Home-page: https://github.com/Hegelim/solve-sum-minmax
 Author: Yewen Zhou
@@ -14,6 +14,10 @@ Requires-Python: >=3.6
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
+[![Github All Releases](https://img.shields.io/github/license/Hegelim/solve-sum-minmax)]()
+[![Github All Releases](https://img.shields.io/github/v/release/Hegelim/solve-sum-minmax)]()
+[![Github All Releases](https://img.shields.io/github/downloads/Hegelim/solve-sum-minmax/total)]()
+[![Github All Releases](https://img.shields.io/github/issues/Hegelim/solve-sum-minmax)]()  
 **About**:  
 `solve-sum-minmax` is a Python module that allows you to solve a sum of min/max equations 
 by taking advantage of the powerful `sympy` library. For instance, say you want to 
@@ -118,12 +122,13 @@ equation carefully, or the module might break.
 variable. 
 ****
 **Version history**: 
-Version | Core Ideas | Return Rationals | Return Intervals 
------------- | ------------- | ------------- | -------------
-v0.0.1 | numerical methods | No | No  
-v0.0.2 | numerical methods | No | No  
-v0.0.3 | combinations | Yes | No  
-v0.0.4 | intervals | Yes | Yes
+Version | Core Ideas | Return Rationals | Return Intervals | Error Handling
+------------ | ------------- | ------------- | ------------- | ------------- 
+v0.0.1 | numerical methods | No | No | No
+v0.0.2 | numerical methods | No | No | No
+v0.0.3 | combinations | Yes | No | No  
+v0.0.4 | intervals | Yes | Yes | No 
+v0.1.0 | intervals | Yes | Yes | Yes 
 ****
 **Contact**:  
 * **Email**: yz4175@columbia.edu
