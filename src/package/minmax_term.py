@@ -23,9 +23,11 @@ class MinMaxTerm:
         return self._minmax_tuple
 
     def left_right_nums(self):
-        match = re.findall(r"\s*(\d+).*,\s*(\d+)\s*", self._minmax_tuple)
+        match = re.findall(r"\s*([\+\-]*\d+).*,\s*([\+\-]*\d+)\s*",
+                           self._minmax_tuple)
         return float(match[0][0]), float(match[0][1])
 
     def left_right_half(self):
-        match = re.findall(r"\s*(\d+.*),\s*(\d+[^\)]*)\s*", self._minmax_tuple)
+        match = re.findall(r"\s*([\-]*\d+.*),\s*([\-]*\d+[^\)]*)\s*",
+                           self._minmax_tuple)
         return match[0][0], match[0][1]

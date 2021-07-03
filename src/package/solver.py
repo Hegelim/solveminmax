@@ -258,6 +258,9 @@ def process_results(results):
 
 
 def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
+    if eq == "" or eq.isspace():
+        raise ValueError("Please do not enter an empty string.")
+
     equation = f"+{eq}"
     value_term = get_value_term(equation)
     minmax_terms = get_minmax_terms(equation)

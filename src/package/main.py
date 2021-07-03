@@ -5,7 +5,8 @@ linear_eqs = [
     "10*a = 150",
     "min(20, 0*a) + 50*a = 100",
     "20*a - 20*a = 0",
-    "20*a - 5*a = 0"
+    "20*a - 5*a = 0",
+    "5*a = -1"
 ]
 
 finite_eqs = [
@@ -31,7 +32,8 @@ interval_eqs = [
 
 none_eqs = [
     "min(400*a, 100) = 500",
-    "max(400*a, 100) = 50"
+    "max(400*a, 100) = 50",
+    "min(20*a, 30) - min(20*a, 30) = 40"
 ]
 
 negative_eqs = [
@@ -40,7 +42,13 @@ negative_eqs = [
     "min(30, -40*a) = 40"
 ]
 
-eqs = ["linear_eqs", "finite_eqs", "interval_eqs", "none_eqs", "negative_eqs"]
+error_eqs = [
+    "",
+    " "
+]
+
+eqs = ["linear_eqs", "finite_eqs", "interval_eqs", "none_eqs", "negative_eqs",
+       "error_eqs"]
 
 if __name__ == "__main__":
     for div in eqs:
