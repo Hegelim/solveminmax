@@ -91,7 +91,3 @@ class Test:
     def test_19(self):
         eq = "min(20, 30) + min(30, 40*a) = 40"
         assert solver.auto_solve(eq, "a") == FiniteSet(1/2)
-
-
-
-

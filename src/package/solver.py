@@ -11,8 +11,8 @@ from src.package.cons_var_term import ConsVarTerm
 
 def get_minmax_terms(equation):
     """Return a list of tuples. """
-    minmax_terms = re.findall(r"(\+|\-)\s*(\d*)\s*\**\s*(min|max)(\([^\)]+\))",
-                              equation)
+    minmax_terms = re.findall(r"([\+\-])\s*(\d*)\s*\**\s*(min|max)"
+                              r"(\([^\)]+\))", equation)
     minmax_objects = []
     for term in minmax_terms:
         minmax_objects.append(MinMaxTerm(term))
@@ -91,7 +91,7 @@ def random_interval(interval):
 
 
 def get_value_term(equation):
-    return re.findall(r"=\s*(\d+)", equation)[0]
+    return re.findall(r"=\s*(.*\d+)", equation)[0]
 
 
 def knit_solver(interval, minmax_terms, cons_var_terms, var_name):
