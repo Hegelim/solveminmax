@@ -30,4 +30,7 @@ class MinMaxTerm:
     def left_right_half(self):
         match = re.findall(r"\s*([\-]*\d+.*),\s*([\-]*\d+[^\)]*)\s*",
                            self._minmax_tuple)
-        return match[0][0], match[0][1]
+        if len(match) != 0:
+            return match[0][0], match[0][1]
+        else:
+            raise ValueError("MinMax terms malformed!")

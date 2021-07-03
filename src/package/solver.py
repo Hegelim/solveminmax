@@ -4,6 +4,8 @@ from sympy.solvers import solveset
 import numpy as np
 from src.package.minmax_term import MinMaxTerm
 from src.package.cons_var_term import ConsVarTerm
+
+
 # TODO: what if the equation starts with a -?
 # TODO: what if the interval is infinity on one end?
 # TODO: what if there are two numbers inside the min?
@@ -103,8 +105,8 @@ def knit_solver(interval, minmax_terms, cons_var_terms, var_name):
         else:
             rand = random_interval(interval)
             index = term.minmax_tuple().rfind(var_name)
-            replaced = term.minmax_tuple()[:index] + "rand" \
-                       + term.minmax_tuple()[index + 1:]
+            replaced = (term.minmax_tuple()[:index]
+                        + "rand" + term.minmax_tuple()[index + 1:])
             replaced = f"{term.minmax_op()}{replaced}"
             left, right = term.left_right_half()
             if var_name not in left:
@@ -184,7 +186,7 @@ def solve_no_minmax_var(minmax_terms, cons_var_terms, value_term):
     knit = ""
     for term in minmax_terms:
         knit += f"{term.operator()}{term.coef()}*" \
-                f"{term.minmax_op()}{ term.minmax_tuple()}"
+                f"{term.minmax_op()}{term.minmax_tuple()}"
     for term in cons_var_terms:
         knit += f"{term.operator()}{term.coef()}*{term.var()}"
     return reformat_and_solve(knit, value_term)

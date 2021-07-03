@@ -43,6 +43,7 @@ negative_eqs = [
 ]
 
 error_eqs = [
+    "min(20*a) = 300",
     "",
     " "
 ]
