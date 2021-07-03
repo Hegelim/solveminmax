@@ -106,12 +106,13 @@ equation carefully, or the module might break.
 variable. 
 ****
 **Version history**: 
-Version | Core Ideas | Return Rationals | Return Intervals 
------------- | ------------- | ------------- | -------------
-v0.0.1 | numerical methods | No | No  
-v0.0.2 | numerical methods | No | No  
-v0.0.3 | combinations | Yes | No  
-v0.0.4 | intervals | Yes | Yes
+Version | Core Ideas | Return Rationals | Return Intervals | Error Handling
+------------ | ------------- | ------------- | ------------- | ------------- 
+v0.0.1 | numerical methods | No | No | No
+v0.0.2 | numerical methods | No | No | No
+v0.0.3 | combinations | Yes | No | No  
+v0.0.4 | intervals | Yes | Yes | No 
+v0.1.0 | intervals | Yes | Yes | Yes 
 ****
 **Contact**:  
 * **Email**: yz4175@columbia.edu
