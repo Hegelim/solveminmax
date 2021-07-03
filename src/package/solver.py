@@ -127,7 +127,9 @@ def knit_solver(interval, minmax_terms, cons_var_terms, var_name):
     return solver
 
 
-def reformat_solve(knit, value_term):
+def reformat_and_solve(knit, value_term):
+    """Reformat the knit str to be compatible with sympy, then solve
+    with solveset. """
     s = f"{knit} - {value_term}"
     a = Symbol("a")
     return solveset(eval(s), a)
@@ -138,12 +140,21 @@ def solve_linear_eq(cons_var_terms, value_term, low, high,
     knit = ""
     for term in cons_var_terms:
         knit += f"{term.operator()}{term.coef()}*{term.var()}"
-    result = reformat_solve(knit, value_term)
+    result = reformat_and_solve(knit, value_term)
     if result is S.Complexes:
         return result.intersect(Interval(low, high, left_open=left_open,
                                          right_open=right_open))
     else:
         return result
+
+
+def extract_val_from_str(s):
+    """Extract value from string.
+    Args:
+          s: str, looks like "200*a"
+    """
+    index = s.find("*")
+    return float(s[:index])
 
 
 def minmax_replace_zeros(minmax_terms):
@@ -153,12 +164,10 @@ def minmax_replace_zeros(minmax_terms):
         term = minmax_terms[i]
         left, right = term.left_right_half()
         if "a" in left and "*" in left:
-            index = left.find("*")
-            num = float(left[:index])
+            num = extract_val_from_str(left)
             non_var_term = right
         elif "a" in right and "*" in right:
-            index = right.find("*")
-            num = float(right[:index])
+            num = extract_val_from_str(right)
             non_var_term = left
         else:
             """If the term does not contain variable. """
@@ -178,13 +187,77 @@ def solve_no_minmax_var(minmax_terms, cons_var_terms, value_term):
                 f"{term.minmax_op()}{ term.minmax_tuple()}"
     for term in cons_var_terms:
         knit += f"{term.operator()}{term.coef()}*{term.var()}"
-    knit = f"{knit} - {value_term}"
-    a = Symbol("a")
-    return solveset(eval(knit), a)
+    return reformat_and_solve(knit, value_term)
 
 
 def get_next(result):
+    """Get next item in result.
+    Args:
+          result: set, such as FiniteSet(0.5).
+    """
     return next(iter(result))
+
+
+def get_next_eval(result):
+    """Return the evaluated next item from result. """
+    return get_next(result).evalf()
+
+
+def find_intersect(interval, low, high, left_open, right_open):
+    """Return the intersect of the interval with the required interval
+    specified by low, high, left_open, and right_open. """
+    return interval.intersect(Interval(low, high, left_open, right_open))
+
+
+def append_interval_complexes(interval, eq, low, high, results):
+    """Handles the case when result is S.Complexes. """
+    temp_interval = interval
+    validate_eq = get_validate_eq(eq)
+    a = interval.start
+    if a != low and eval(validate_eq):
+        temp_interval = temp_interval.union(FiniteSet(a))
+    a = interval.end
+    if a != high and eval(validate_eq):
+        temp_interval = temp_interval.union(FiniteSet(a))
+    results.append(temp_interval)
+
+
+def append_interval_endpoints(interval, eq, result, results, low, high):
+    """Handles the cases when the result == interval.start or
+    result == interval.end. """
+    a = random_interval(interval)
+    if get_next_eval(result) == interval.start:
+        validate_eq = get_validate_eq(eq)
+        if eval(validate_eq):
+            temp_interval = interval.union(result)
+            a = interval.end
+            if a == high:
+                results.append(temp_interval)
+            elif eval(validate_eq):
+                results.append(temp_interval.union(FiniteSet(a)))
+            else:
+                results.append(temp_interval)
+    else:
+        validate_eq = get_validate_eq(eq)
+        if eval(validate_eq):
+            temp_interval = interval.union(result)
+            a = Interval.start
+            if a == low:
+                results.append(temp_interval)
+            elif eval(validate_eq):
+                results.append(temp_interval.union(FiniteSet(a)))
+            else:
+                results.append(temp_interval)
+
+
+def process_results(results):
+    """Process results depending on its length and return. """
+    if len(results) == 0:
+        return None
+    elif len(results) == 1:
+        return results[0]
+    else:
+        return results[0].union(results[1])
 
 
 def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
@@ -205,60 +278,32 @@ def auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True):
     set_points = find_set_points(minmax_terms, var_name)
     if len(set_points) == 0:
         """If there are no set_points, it means there are no 
-        variables in minmax_terms. """
+        variables in minmax_terms, such as min(20, 30) or 
+        min(20, 0*a). """
         return solve_no_minmax_var(minmax_terms, cons_var_terms, value_term)
 
     intervals = create_intervals(set_points)
     results = []
     for interval in intervals:
-        interval = interval.intersect(Interval(low, high,
-                                               left_open=left_open,
-                                               right_open=right_open))
+        """Find the intersect because the set points pay no regards to 
+        required intervals. """
+        interval = find_intersect(interval, low, high, left_open, right_open)
         knitted_solver = knit_solver(interval, minmax_terms,
                                      cons_var_terms, "a")
-        result = reformat_solve(knitted_solver, value_term)
+        result = reformat_and_solve(knitted_solver, value_term)
         if result is S.Complexes:
-            temp_interval = interval
-            validate_eq = get_validate_eq(eq)
-            a = interval.start
-            if a != low and eval(validate_eq):
-                temp_interval = temp_interval.union(FiniteSet(a))
-            a = interval.end
-            if a != high and eval(validate_eq):
-                temp_interval = temp_interval.union(FiniteSet(a))
-            results.append(temp_interval)
+            """If this interval satisfies the equation, check two end
+            points and union them if necessary. """
+            append_interval_complexes(interval, eq, low, high, results)
         elif result is EmptySet:
+            """Skip to the next iteration. """
             continue
         elif get_next(result) in interval:
             """If it's a FiniteSet, return. """
             return result
-        elif get_next(result).evalf() == interval.start:
-            a = random_interval(interval)
-            validate_eq = get_validate_eq(eq)
-            if eval(validate_eq):
-                temp_interval = interval.union(result)
-                a = interval.end
-                if a == high:
-                    results.append(temp_interval)
-                elif eval(validate_eq):
-                    results.append(temp_interval.union(FiniteSet(a)))
-                else:
-                    results.append(temp_interval)
-        elif get_next(result).evalf() == interval.end:
-            a = random_interval(interval)
-            validate_eq = get_validate_eq(eq)
-            if eval(validate_eq):
-                temp_interval = interval.union(result)
-                a = Interval.start
-                if a == low:
-                    results.append(temp_interval)
-                elif eval(validate_eq):
-                    results.append(temp_interval.union(FiniteSet(a)))
-                else:
-                    results.append(temp_interval)
-    if len(results) == 0:
-        return None
-    elif len(results) == 1:
-        return results[0]
-    else:
-        return results[0].union(results[1])
+        elif get_next_eval(result) == interval.start \
+                or get_next_eval(result) == interval.end:
+            """If the result falls on either end point, check the other 
+            end point and union it if necessary. """
+            append_interval_endpoints(interval, eq, result, results, low, high)
+    return process_results(results)
