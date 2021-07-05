@@ -125,10 +125,8 @@ equation carefully, or the module might break.
 variable. 
 ****
 **Version history**: 
-Version | Core Ideas | Return Rationals | Return Intervals | Error Handling | 
-Plotting
------------- | ------------- | ------------- | ------------- | ------------- 
-| -------------
+Version | Core Ideas | Return Rationals | Return Intervals | Error Handling | Plotting
+------------ | ------------- | ------------- | ------------- | ------------- | -------------
 v0.0.1 | numerical methods | No | No | No | No
 v0.0.2 | numerical methods | No | No | No | No
 v0.0.3 | combinations | Yes | No | No | No
