@@ -15,6 +15,10 @@ that allows you to solve this kind of equation fastly and efficiently. Thus,
 this package is developed to fill the void and hopefully be of use to the broad 
 population.  
 ****
+**Legacy Note**:  
+From v0.1.0, the former module, `solve-sum-minmax` was renamed to `solveminmax` 
+so that it follows the Python naming conventions.  
+****
 **Quick Start**:  
 Let's say you want to solve the equation 
 min(500, 600a) + max(400, 500a) = 500. However, solving it in Math means you 
@@ -26,6 +30,12 @@ there is a library for you now! First off, you need to install it via pip
 in your terminal like below:  
 ```
 pip install solveminmax
+```
+Or, you can directly clone the project in your local repo and install it using
+setup.py like below:
+```
+git clone https://github.com/Hegelim/solveminmax.git
+python setup.py install
 ```
 Then to solve your problem, simply type in these
 codes in your Python console: 
@@ -96,6 +106,15 @@ instead of `50*a`.
 * put any constants on the left-hand side of the equation. Do me a favor, if 
 you have any constants, subtract it from the right-hand side and 
   rearrange your terms before using the module. 
+****
+**Testing**:  
+To test the module, modify `test_solveminmax.py` file in the `tests` directory.
+Once you are done editing, go to the root directory under `solveminmax` and 
+type in the following command in your command line:
+```
+python -m pytest 
+```
+It should run without errors.  
 ****
 **Limitations**:  
 * Currently, the module only supports `"a"` as the variable. 
