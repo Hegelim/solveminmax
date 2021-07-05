@@ -71,7 +71,16 @@ FiniteSet(4/11)
 ```
 * **Accurate**: it handles exact Rational numbers and intervals. 
 * **Flexible**：you have a lot of flexibility in defining your equation, 
-  see below. 
+  see below.
+  
+* **Versatile**: start from `v0.1.4`, you can plot your equation and check your 
+results visually. An example is:
+  
+```
+>>> from solveminmax import plot
+>>> eq = "-2*min(300, 400*a) = -600"
+>>> plot.make_plot(eq, "a")
+```
 ****
 **Format guide**:  
 Because the module depends heavily on regular expressions, please follow 
