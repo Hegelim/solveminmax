@@ -1,5 +1,5 @@
 from sympy import FiniteSet, Interval
-from src.package import solver
+from src.solveminmax import solver
 
 
 class Test:
