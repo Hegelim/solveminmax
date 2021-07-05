@@ -6,7 +6,8 @@ linear_eqs = [
     "min(20, 0*a) + 50*a = 100",
     "20*a - 20*a = 0",
     "20*a - 5*a = 0",
-    "5*a = -1"
+    "5*a = -1",
+    "-20*a = 1"
 ]
 
 finite_eqs = [
@@ -19,7 +20,8 @@ finite_eqs = [
     "800*a + min(300, 400*a) + min(300, 400*a) = 1000",
     "750*a + min(300, 400*a) + min(300, 400*a) + 50*a = 1000",
     "min(500, 600*a) + max(400, 500*a) = 500",
-    "800*a + 2*min(300, 400*a) = 1000"
+    "800*a + 2*min(300, 400*a) = 1000",
+    "-2*min(300, 400*a) = -600"
 ]
 
 interval_eqs = [
@@ -48,8 +50,7 @@ error_eqs = [
     " "
 ]
 
-eqs = ["linear_eqs", "finite_eqs", "interval_eqs", "none_eqs", "negative_eqs",
-       "error_eqs"]
+eqs = ["linear_eqs", "finite_eqs", "interval_eqs", "none_eqs", "negative_eqs"]
 
 if __name__ == "__main__":
     for div in eqs:

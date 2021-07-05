@@ -4,8 +4,6 @@ from sympy.solvers import solveset
 import numpy as np
 from src.package.minmax_term import MinMaxTerm
 from src.package.cons_var_term import ConsVarTerm
-
-
 # TODO: what if the equation starts with a -?
 # TODO: what if the interval is infinity on one end?
 # TODO: what if there are two numbers inside the min?

@@ -1,12 +1,12 @@
-from src.package import solver
 from sympy import FiniteSet, Interval
+from src.package import solver
 
 
 class Test:
     def test_1(self):
         """FiniteSet"""
         eq = 'min(400, 400*a) + min(400, 400*a) + min(0, 100*a) = 200'
-        assert solver.auto_solve(eq, "a") == FiniteSet(1/4)
+        assert solver.auto_solve(eq, "a") == FiniteSet(1 / 4)
 
     def test_2(self):
         """FiniteSet"""
@@ -25,12 +25,12 @@ class Test:
     def test_5(self):
         """If the equation has both min and max. """
         eq = "min(500, 600*a) + max(400, 500*a) = 500"
-        assert list(solver.auto_solve(eq, "a"))[0].evalf() == 1/6
+        assert list(solver.auto_solve(eq, "a"))[0].evalf() == 1 / 6
 
     def test_6(self):
         """If has constants before min/max. """
         eq = "800*a + 2*min(300, 400*a) = 1000"
-        assert solver.auto_solve(eq, "a") == FiniteSet(5/8)
+        assert solver.auto_solve(eq, "a") == FiniteSet(5 / 8)
 
     def test_7(self):
         eq = "min(500, 600*a) - min(500, 600*a) = 0"
@@ -39,7 +39,8 @@ class Test:
 
     def test_8(self):
         eq = "min(400, 600*a) = 400"
-        assert solver.auto_solve(eq, "a") == Interval(2/3, 1, left_open=False,
+        assert solver.auto_solve(eq, "a") == Interval(2 / 3, 1,
+                                                      left_open=False,
                                                       right_open=True)
 
     def test_9(self):
@@ -49,13 +50,13 @@ class Test:
 
     def test_10(self):
         eq = "min(100, 400*a) + max(300, 400*a) = 400"
-        assert solver.auto_solve(eq, "a") == Interval(1/4, 3/4,
+        assert solver.auto_solve(eq, "a") == Interval(1 / 4, 3 / 4,
                                                       left_open=False,
                                                       right_open=False)
 
     def test_11(self):
         eq = "max(300, 400*a) = 300"
-        assert solver.auto_solve(eq, "a") == Interval(0, 3/4,
+        assert solver.auto_solve(eq, "a") == Interval(0, 3 / 4,
                                                       left_open=True,
                                                       right_open=False)
 
@@ -82,12 +83,12 @@ class Test:
 
     def test_17(self):
         eq = "min(20, 0*a) + min(20, 30*a) + 50*a = 50"
-        assert solver.auto_solve(eq, "a") == FiniteSet(5/8)
+        assert solver.auto_solve(eq, "a") == FiniteSet(5 / 8)
 
     def test_18(self):
         eq = "0*a + min(20, 30*a) = 15"
-        assert solver.auto_solve(eq, "a") == FiniteSet(1/2)
+        assert solver.auto_solve(eq, "a") == FiniteSet(1 / 2)
 
     def test_19(self):
         eq = "min(20, 30) + min(30, 40*a) = 40"
-        assert solver.auto_solve(eq, "a") == FiniteSet(1/2)
+        assert solver.auto_solve(eq, "a") == FiniteSet(1 / 2)
