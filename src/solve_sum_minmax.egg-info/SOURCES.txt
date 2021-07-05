@@ -1,7 +1,7 @@
 LICENSE
 README.md
 pyproject.toml
-setup.cfg
+setup.py
 src/package/__init__.py
 src/package/cons_var_term.py
 src/package/main.py

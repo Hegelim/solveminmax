@@ -1,0 +1,135 @@
+Metadata-Version: 2.1
+Name: solveminmax
+Version: 0.1.3
+Summary: A package to solve the sum of min/max equations
+Home-page: https://github.com/hegelim/solve-sum-minmax
+Author: Yewen Zhou
+Author-email: yz4175@columbia.edu
+License: UNKNOWN
+Description: [![Github All Releases](https://img.shields.io/github/license/Hegelim/solve-sum-minmax)]()
+        [![Github All Releases](https://img.shields.io/github/v/release/Hegelim/solve-sum-minmax)]()
+        [![Github All Releases](https://img.shields.io/github/downloads/Hegelim/solve-sum-minmax/total)]()
+        [![Github All Releases](https://img.shields.io/github/issues/Hegelim/solve-sum-minmax)]()  
+        **About**:  
+        `solveminmax` is a Python module that allows you to solve a sum of min/max equations 
+        by taking advantage of the powerful `sympy` library. For instance, say you want to 
+        solve this equation: min(400, 500x) + min(200, 500x) + min(0, 500x) = 700 
+        with the assumption that x is within range (0, 1).  
+        In Math, the rigorous way would 
+        require you to set up all possible conditions, which 
+        might result in huge computation. 
+        Currently, there aren't any available packages in Python
+        that allows you to solve this kind of equation fastly and efficiently. Thus,
+        this package is developed to fill the void and hopefully be of use to the broad 
+        population.  
+        ****
+        **Quick Start**:  
+        Let's say you want to solve the equation 
+        min(500, 600a) + max(400, 500a) = 500. However, solving it in Math means you 
+        would have to set up the conditions, then solve the check for each one of them, 
+        which sounds like a lot of work, especially for smart people like you 
+        who know how to take advantage of existing tools. So you ask yourself,
+        "What if there is a library that lets me solve it like a piece of cake?" Well, 
+        there is a library for you now! First off, you need to install it via pip 
+        in your terminal like below:  
+        ```
+        pip install solveminmax
+        ```
+        Then to solve your problem, simply type in these
+        codes in your Python console: 
+        ```
+        >>> from solveminmax import solver
+        >>> eq = "min(500, 600*a) + max(400, 500*a) = 500"
+        >>> solver.auto_solve(eq, "a")
+        FiniteSet(1/6)
+        ```
+        Whola! In fact, this is a pretty complex problem, but 
+        you just solved it with 3 lines of code. But hold on, what does it mean? 
+        Let's break it down: the core function 
+        `auto_solve` takes in two required parameters 
+        `equation` and `var_name`. `equation` takes in a string of the equation you want to solve 
+        and `var_name` lets you define your variable with flexibility, such as `"a"`
+        or `"x"`, although currently, it only supports `"a"`. 
+        You can also pass in `"low"`, `"high"`, which lets you specify the range 
+        of your variable. Further details are included in the docstring 
+        if you are interested.  
+        ****
+        **Perks**:  
+        * **Fast**: the module solves a set of complex min and max equations usually 
+          under 100 ms, depending on your hardware. 
+        For example, for an equation as complex as below, it takes 7 ms on average to 
+          give you a solution:
+          
+        ```
+        >>> from solveminmax import solver 
+        >>> eq = "max(600*a, 400) + min(200*a, 500) + min(100, 300*a) + 50*a = 600"
+        >>> %timeit solver.auto_solve(eq, "a")
+        FiniteSet(4/11)
+        7.1 ms ± 225 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+        ```
+        * **Accurate**: it handles exact Rational numbers and intervals. 
+        * **Flexible**：you have a lot of flexibility in defining your equation, 
+          see below. 
+        ****
+        **Format guide**:  
+        Because the module depends heavily on regular expressions, please follow 
+        the guide on how to define your equations carefully, or the module might break.   
+        In a nutshell, wrap the equation you want to solve in a string with the format
+        similar to the example: 
+        ```
+        >>> eq = "20 + max(600*a, 400) + min(200*a, 500) + min(100, 300*a) + 50*a = 600"
+        ```
+        Before we delve into explanations in details, let's define a few terms: 
+        * **value_term**: the value you want to solve your equation for, here it's `600`. 
+        * **minmax_term**: it is what it means in English, for example, `max(600*a, 400)`.
+        * **cons_var_term**: terms with constants times variables, such as `50*a`.
+        
+        In brief, what you **can** do include:
+        * put the variable either in the 1st or 2nd place inside the parenthesis, for 
+        example, either `min(200, 300*a)` or `min(300*a, 200)` is fine.
+        * use min and max together in one equation.
+        * use + and/or -. 
+        * have constants in front of min or max, such as `2*min(400, 400a)`.
+        * have any space between each component.
+        * have leading 0s before variable, such as `min(0*a, 200)`.
+        * have constants inside min or max, such as `min(20, 30)`.
+        
+        What you **can't** do include: 
+        * use `==` instead of `=`.
+        * for the `cons_var_term`, have variables before constants, such as `a*50` 
+        instead of `50*a`.
+        * missing any parenthesis. 
+        * use other operators instead of + or -.
+        * missing any necessary `*` operator for each variable.
+        * put any constants on the left-hand side of the equation. Do me a favor, if 
+        you have any constants, subtract it from the right-hand side and 
+          rearrange your terms before using the module. 
+        ****
+        **Limitations**:  
+        * Currently, the module only supports `"a"` as the variable. 
+        * Because the module heavily depends on regular expressions, 
+          the user needs to follow the format of the 
+        equation carefully, or the module might break.
+        * The equation must be uni-variate, i.e., there can only be one independent 
+        variable. 
+        ****
+        **Version history**: 
+        Version | Core Ideas | Return Rationals | Return Intervals | Error Handling
+        ------------ | ------------- | ------------- | ------------- | ------------- 
+        v0.0.1 | numerical methods | No | No | No
+        v0.0.2 | numerical methods | No | No | No
+        v0.0.3 | combinations | Yes | No | No  
+        v0.0.4 | intervals | Yes | Yes | No 
+        v0.1.0 | intervals | Yes | Yes | Yes 
+        ****
+        **Contact**:  
+        * **Email**: yz4175@columbia.edu
+        * **Collaboration**: collaborations are welcomed, please email me if you 
+        are interested.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown

@@ -3,7 +3,7 @@
 [![Github All Releases](https://img.shields.io/github/downloads/Hegelim/solve-sum-minmax/total)]()
 [![Github All Releases](https://img.shields.io/github/issues/Hegelim/solve-sum-minmax)]()  
 **About**:  
-`solve-sum-minmax` is a Python module that allows you to solve a sum of min/max equations 
+`solveminmax` is a Python module that allows you to solve a sum of min/max equations 
 by taking advantage of the powerful `sympy` library. For instance, say you want to 
 solve this equation: min(400, 500x) + min(200, 500x) + min(0, 500x) = 700 
 with the assumption that x is within range (0, 1).  
@@ -25,12 +25,12 @@ who know how to take advantage of existing tools. So you ask yourself,
 there is a library for you now! First off, you need to install it via pip 
 in your terminal like below:  
 ```
-pip install solve-sum-minmax
+pip install solveminmax
 ```
 Then to solve your problem, simply type in these
 codes in your Python console: 
 ```
->>> from solve-sum-minmax import solver
+>>> from solveminmax import solver
 >>> eq = "min(500, 600*a) + max(400, 500*a) = 500"
 >>> solver.auto_solve(eq, "a")
 FiniteSet(1/6)
@@ -53,7 +53,7 @@ For example, for an equation as complex as below, it takes 7 ms on average to
   give you a solution:
   
 ```
->>> from solve-sum-minmax import solver 
+>>> from solveminmax import solver 
 >>> eq = "max(600*a, 400) + min(200*a, 500) + min(100, 300*a) + 50*a = 600"
 >>> %timeit solver.auto_solve(eq, "a")
 FiniteSet(4/11)

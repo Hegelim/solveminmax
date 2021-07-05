@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+src/solveminmax/__init__.py
+src/solveminmax/cons_var_term.py
+src/solveminmax/main.py
+src/solveminmax/minmax_term.py
+src/solveminmax/solver.py
+src/solveminmax.egg-info/PKG-INFO
+src/solveminmax.egg-info/SOURCES.txt
+src/solveminmax.egg-info/dependency_links.txt
+src/solveminmax.egg-info/top_level.txt

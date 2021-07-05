@@ -4,8 +4,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="solve_sum_minmax",
-    version="0.1.0",
+    name="solveminmax",
+    version="0.1.3",
     author="Yewen Zhou",
     author_email="yz4175@columbia.edu",
     description="A package to solve the sum of min/max equations",
