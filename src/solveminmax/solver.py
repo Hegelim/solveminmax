@@ -2,11 +2,15 @@ import re
 from sympy import S, Symbol, EmptySet, Interval, FiniteSet
 from sympy.solvers import solveset
 import numpy as np
-from src.solveminmax.minmax_term import MinMaxTerm
-from src.solveminmax.cons_var_term import ConsVarTerm
+from solveminmax.minmax_term import MinMaxTerm
+from solveminmax.cons_var_term import ConsVarTerm
 # TODO: what if the equation starts with a -?
 # TODO: what if the interval is infinity on one end?
-# TODO: what if there are two numbers inside the min?
+
+
+def get_lhs(equation):
+    index = equation.find("=")
+    return equation[:index]
 
 
 def get_minmax_terms(equation):
