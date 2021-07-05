@@ -13,6 +13,19 @@ def get_lhs(equation):
     return equation[:index]
 
 
+def get_constants(equation):
+    """Extracts constants from the lhs of
+    the equation. """
+    lhs = get_lhs(equation)
+    l = []
+    for t in lhs.split():
+        try:
+            l.append(float(t))
+        except ValueError:
+            pass
+    return l
+
+
 def get_minmax_terms(equation):
     """Return a list of tuples. """
     minmax_terms = re.findall(r"([\+\-])\s*(\d*)\s*\**\s*(min|max)"
