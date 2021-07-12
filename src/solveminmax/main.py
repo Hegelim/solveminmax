@@ -1,4 +1,4 @@
-import solver
+from solveminmax import solver
 
 linear_eqs = [
     "20*a - 20*a = 0",
