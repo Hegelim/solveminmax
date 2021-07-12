@@ -9,13 +9,27 @@ from solveminmax.cons_var_term import ConsVarTerm
 
 
 def get_lhs(equation):
+    """Get the left-hand side of the equation.
+    Args:
+        equation: str, the equation.
+
+    Return:
+        A string of the left-hand side of the equation.
+    """
     index = equation.find("=")
     return equation[:index]
 
 
 def get_constants(equation):
     """Extracts constants from the lhs of
-    the equation. """
+    the equation.
+
+    Args:
+        equation: str, the equation.
+
+    Return:
+        A list of constants on the LHS of the equation.
+    """
     lhs = get_lhs(equation)
     l = []
     for t in lhs.split():
