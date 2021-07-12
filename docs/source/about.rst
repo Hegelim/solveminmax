@@ -1,3 +1,4 @@
+*****
 About
 *****
 :code:`solveminmax` is a Python module that allows you to solve a sum of min/max equations

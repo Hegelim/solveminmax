@@ -1,3 +1,4 @@
+***********
 Quick Start
 ***********
 Say someday you encountered a Math problem that looks like this:

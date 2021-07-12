@@ -1,5 +1,6 @@
+*********
 Examples
-**********
+*********
 
 The module supports several kinds of equations that involve minimum and maximum.
 To begin with, it supports linear equations without min/max terms:

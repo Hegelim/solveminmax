@@ -1,10 +1,12 @@
+************
 Format Guide
 ************
 
-| Because the module depends heavily on regular expressions, please follow
- the guide on how to define your equations carefully, or the module might break.
- In a nutshell, open up your Python console and wrap the equation you want to
- solve in a string with the format similar to the example:
+Because the module depends heavily on regular expressions, please follow
+the guide on how to define your equations carefully, or the module might break.
+In a nutshell, open up your Python console and wrap the equation you want to
+solve in a string with the format similar to the example:
+
 .. code-block:: python
 
     >>> eq = "max(600*a, 400) + min(200*a, 500) + min(100, 300*a) + 50*a = 600"

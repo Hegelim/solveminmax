@@ -7,13 +7,34 @@ Welcome to solveminmax's documentation!
 =======================================
 
 .. toctree::
+   :caption: API Documentation
    :maxdepth: 2
 
-   API Reference <./modules.rst>
-   User Guide <./user_guide.rst>
-   Limitations <./limitations.rst>
-   Version History <./version_history.rst>
+   modules
 
+.. toctree::
+   :caption: User Guide
+   :numbered:
+   :maxdepth: 2
+
+   about
+   install
+   quickstart
+   examples
+   formatguide
+   testing
+
+.. toctree::
+   :caption: Limitations
+   :maxdepth: 2
+
+   limitations
+
+.. toctree::
+   :caption: Version History
+   :maxdepth: 2
+
+   version_history
 
 Indices and tables
 ==================
