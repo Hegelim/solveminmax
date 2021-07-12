@@ -9,8 +9,9 @@ Welcome to solveminmax's documentation!
 .. toctree::
    :maxdepth: 2
 
-   install
-   support
+   API Reference
+   User Guide <./user_guide.rst>
+   What's New?
 
 
 Indices and tables
