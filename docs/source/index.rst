@@ -9,9 +9,9 @@ Welcome to solveminmax's documentation!
 .. toctree::
    :maxdepth: 2
 
-   API Reference
+   API Reference <./modules.rst>
    User Guide <./user_guide.rst>
-   What's New?
+   What's New? <./whats_new.rst>
 
 
 Indices and tables
