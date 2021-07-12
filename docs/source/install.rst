@@ -7,7 +7,7 @@ To install the package, open up a command prompt and type in the following:
 
     $ pip install solveminmax
 
-Alternatively, you can also install the package directly from github repo:
+Alternatively, you can also install the package directly from the github repo:
 
 .. code-block:: console
 

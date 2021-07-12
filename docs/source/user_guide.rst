@@ -8,6 +8,6 @@ User Guide
     About <./about.rst>
     Installation <./install.rst>
     Quick Start <./quickstart.rst>
+    Examples <./examples.rst>
     Format Guide <./formatguide.rst>
     Testing <./testing.rst>
-

@@ -12,7 +12,7 @@ Welcome to solveminmax's documentation!
    API Reference <./modules.rst>
    User Guide <./user_guide.rst>
    Limitations <./limitations.rst>
-   Version History? <./version_history.rst>
+   Version History <./version_history.rst>
 
 
 Indices and tables
