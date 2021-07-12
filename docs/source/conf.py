@@ -22,7 +22,7 @@ copyright = '2021, Yewen Zhou'
 author = 'Yewen Zhou'
 
 # The full version, including alpha/beta/rc tags
-release = 'v0.1.4'
+release = '0.1.3'
 
 
 # -- General configuration ---------------------------------------------------

@@ -6,6 +6,7 @@ src/solveminmax/__init__.py
 src/solveminmax/cons_var_term.py
 src/solveminmax/main.py
 src/solveminmax/minmax_term.py
+src/solveminmax/plot.py
 src/solveminmax/solver.py
 src/solveminmax.egg-info/PKG-INFO
 src/solveminmax.egg-info/SOURCES.txt
