@@ -2,9 +2,12 @@ User Guide
 **********
 
 .. toctree::
-   :numbered:
-   :maxdepth: 2
+    :numbered:
+    :maxdepth: 2
 
-   about.rst
-   install.rst
-   quickstart.rst
+    About <./about.rst>
+    Installation <./install.rst>
+    Quick Start <./quickstart.rst>
+    Format Guide <./formatguide.rst>
+    Testing <./testing.rst>
+

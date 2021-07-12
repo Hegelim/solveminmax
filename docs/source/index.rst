@@ -11,7 +11,8 @@ Welcome to solveminmax's documentation!
 
    API Reference <./modules.rst>
    User Guide <./user_guide.rst>
-   What's New? <./whats_new.rst>
+   Limitations <./limitations.rst>
+   Version History? <./version_history.rst>
 
 
 Indices and tables
