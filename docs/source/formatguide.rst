@@ -17,6 +17,11 @@ Before we delve into explanations in details, let's define a few terms:
 *  **minmax_term**: it is what it means in English, for example, :code:`max(600*a, 400)`.
 *  **cons_var_term**: terms with constants times variables, such as :code:`50*a`.
 
+.. note::
+
+   The module does not support constants on the left-hand side of the equation
+   just yet, which will be added in future versions. 
+
 In brief, what you **can** do include:
 
 *  put the variable either in the 1st or 2nd place inside the parenthesis.

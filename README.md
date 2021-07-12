@@ -1,5 +1,4 @@
 ## The `solveminmax` Python Package
-****
 [![Github All Releases](https://img.shields.io/pypi/v/solveminmax)]()
 [![Github All Releases](https://img.shields.io/github/license/Hegelim/solve-sum-minmax)]()
 [![Github All Releases](https://img.shields.io/github/v/release/Hegelim/solve-sum-minmax)]()
@@ -92,7 +91,7 @@ v0.0.4 | intervals | Yes | Yes | No | No
 v0.1.0 | intervals | Yes | Yes | Yes | No
 v0.1.4 | intervals | Yes | Yes | Yes | Yes
 
-For more information, check the documentation. 
+For more information, check the documentation.
 ****
 **Contact**:  
 * **Email**: yz4175@columbia.edu

@@ -33,7 +33,7 @@ For equations that have no solutions, the module returns :code:`None`:
    >>> from solveminmax import solver
    >>> eq_1 = "min(400*a, 100) = 500"
    >>> print(solver.auto_solve(eq_1, "a"))
-   >>> None
+   None
 
 It also supports basic error-handling, such as:
 

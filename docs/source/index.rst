@@ -23,22 +23,11 @@ solveminmax Documentation
    examples
    formatguide
    testing
-
-.. toctree::
-   :caption: Limitations
-   :maxdepth: 2
-
    limitations
 
 .. toctree::
-   :caption: Version History
+   :caption: Development
    :maxdepth: 2
 
    version_history
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   contribute

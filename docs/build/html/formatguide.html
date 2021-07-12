@@ -100,14 +100,12 @@
 <li class="toctree-l1"><a class="reference internal" href="examples.html">4. Examples</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">5. Format Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">6. Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">7. Limitations</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Limitations</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Version History</span></p>
+<p class="caption"><span class="caption-text">Development</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="version_history.html">Version History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribution</a></li>
 </ul>
 
             
@@ -190,6 +188,11 @@ solve in a string with the format similar to the example:</p>
 <li><p><strong>minmax_term</strong>: it is what it means in English, for example, <code class="code docutils literal notranslate"><span class="pre">max(600*a,</span> <span class="pre">400)</span></code>.</p></li>
 <li><p><strong>cons_var_term</strong>: terms with constants times variables, such as <code class="code docutils literal notranslate"><span class="pre">50*a</span></code>.</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The module does not support constants on the left-hand side of the equation
+just yet, which will be added in future versions.</p>
+</div>
 <p>In brief, what you <strong>can</strong> do include:</p>
 <ul class="simple">
 <li><p>put the variable either in the 1st or 2nd place inside the parenthesis.
