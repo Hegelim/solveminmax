@@ -4,12 +4,7 @@ import numpy as np
 
 
 def make_plot(equation, low=0, high=1):
-    """Plotting equation.
-    Args:
-        equation: str, the equation to be plotted.
-        low: float, the lower point of the domain.
-        high: float, the higher point of the domain.
-    """
+    """Make plots. """
     lhs = solver.get_lhs(equation)
     value = solver.get_value_term(equation)
     replaced = lhs.replace("min", "np.minimum").replace("max", "np.maximum")
