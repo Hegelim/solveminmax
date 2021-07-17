@@ -1,0 +1,341 @@
+:mod:`solveminmax.solver`
+=========================
+
+.. py:module:: solveminmax.solver
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   solveminmax.solver.get_lhs
+   solveminmax.solver.get_constants
+   solveminmax.solver.get_minmax_terms
+   solveminmax.solver.get_cons_var_terms
+   solveminmax.solver.find_set_points
+   solveminmax.solver.create_intervals
+   solveminmax.solver.get_validate_eq
+   solveminmax.solver.random_interval
+   solveminmax.solver.get_value_term
+   solveminmax.solver.knit_solver
+   solveminmax.solver.reformat_and_solve
+   solveminmax.solver.solve_linear_eq
+   solveminmax.solver.extract_val_from_str
+   solveminmax.solver.minmax_replace_zeros
+   solveminmax.solver.solve_no_minmax_var
+   solveminmax.solver.get_next
+   solveminmax.solver.get_next_eval
+   solveminmax.solver.find_intersect
+   solveminmax.solver.append_interval_complexes
+   solveminmax.solver.append_interval_endpoints
+   solveminmax.solver.process_results
+   solveminmax.solver.auto_solve
+
+
+
+.. function:: get_lhs(equation)
+
+   Get the left-hand side of the equation.
+
+   :param equation: The string of the equation to be solved.
+   :type equation: str
+
+   :returns: A string of the left-hand side of the equation.
+   :rtype: str
+
+
+.. function:: get_constants(equation)
+
+   Extract constants from the left-hand side of the equation.
+
+   :param equation: A string of the equation to be solved.
+   :type equation: str
+
+   :returns: A list of constants on the LHS of the equation.
+   :rtype: str
+
+
+.. function:: get_minmax_terms(equation)
+
+   Get a list of minmax terms.
+
+   :param equation: A string of the equation to be solved.
+   :type equation: str
+
+   :returns: A list of minmax_term objects.
+   :rtype: list
+
+
+.. function:: get_cons_var_terms(equation)
+
+   Get a list of cons_var_terms.
+
+   :param equation: A string of the equation to be solved.
+   :type equation: str
+
+   :returns: A list of cons_var_term objects.
+   :rtype: list
+
+
+.. function:: find_set_points(minmax_terms, var_name)
+
+   Return a list of sorted set points.
+
+   :param minmax_terms: A list of minmax_term objects.
+   :type minmax_terms: list
+   :param var_name: A character, which is the name of the variable.
+   :type var_name: str
+
+   :returns: An empty list if there are variables but all coefficients are 0,
+             such as min(30, 0*a), or if there are simply no variables, such as
+             min(30, 30).
+   :rtype: list
+
+
+.. function:: create_intervals(set_points, low=0, high=1, left_open=True, right_open=True)
+
+   Create a list of intervals based on set_points.
+
+   :param set_points: A list of sorted set points.
+   :type set_points: list
+   :param low: The lower bound of the variable.
+   :type low: float
+   :param high: The higher bound of the variable.
+   :type high: float
+   :param left_open: True if the bound is open on the left.
+   :type left_open: bool
+   :param right_open: True if the bound is open on the right.
+   :type right_open: bool
+
+   :returns: A list of Interval objects based on set points.
+   :rtype: list
+
+
+.. function:: get_validate_eq(equation)
+
+   Return a modified equation string with = replaced by ==.
+
+   :param equation: The equation to be solved.
+   :type equation: str
+
+   :returns: A modified equation string with = replaced by ==.
+   :rtype: str
+
+
+.. function:: random_interval(interval)
+
+   Generate a random number in the interval.
+
+   :param interval (: object:Interval): An Interval object.
+
+   :returns: A random number generated uniformly from the interval.
+   :rtype: float
+
+
+.. function:: get_value_term(equation)
+
+   Get the value term on the right hand side of the equation.
+
+   :param equation: The equation to be solved.
+   :type equation: str
+
+   :returns: The value term as a string.
+   :rtype: str
+
+
+.. function:: knit_solver(interval, minmax_terms, cons_var_terms, var_name)
+
+   Generate a string based on minmax_terms and cons_var_terms to be fed
+   into the solver.
+
+   :param interval (: object:Interval): An Interval object.
+   :param minmax_terms: A list of minmax_term objects.
+   :type minmax_terms: list
+   :param cons_var_terms: A list of cons_var_term objects.
+   :type cons_var_terms: list
+   :param var_name: The character of the variable.
+   :type var_name: str
+
+   :returns: A knitted string of the equation.
+   :rtype: str
+
+
+.. function:: reformat_and_solve(knit, value_term)
+
+   Reformat the knit str to be compatible with sympy, then solve
+   with solveset.
+
+   :param knit: The knitted equation string.
+   :type knit: str
+   :param value_term: The value term of the equation.
+   :type value_term: str
+
+   :returns: Solution after being solved by solveset.
+
+
+.. function:: solve_linear_eq(cons_var_terms, value_term, low, high, left_open, right_open)
+
+   Solve a linear equation if the equation does not contain minmax_terms.
+
+   :param cons_var_terms: A list of cons_var_term objects.
+   :type cons_var_terms: list
+   :param value_term: The value term of the equation.
+   :type value_term: str
+   :param low: The lower bound of the variable.
+   :type low: float
+   :param high: The upper bound of the variable.
+   :type high: float
+   :param left_open: True if the bound is open on the left.
+   :type left_open: bool
+   :param right_open: True if the bound is open on the right.
+   :type right_open: bool
+
+   :returns: Solution after being solved by solveset.
+
+
+.. function:: extract_val_from_str(s)
+
+   Extract value from string.
+
+   :param s: A string that looks like "200*a"
+   :type s: str
+
+   :returns: The float from the string.
+   :rtype: float
+
+
+.. function:: minmax_replace_zeros(minmax_terms)
+
+   Replace minmax_terms where coefficients before variables are 0 to proper
+   minmax_terms reformatted.
+
+   :param minmax_terms: A list of minmax_term objects.
+   :type minmax_terms: list
+
+   :returns: None
+
+
+.. function:: solve_no_minmax_var(minmax_terms, cons_var_terms, value_term)
+
+   Solve the equation when there are no variables in minmax_terms.
+
+   For example, when minmax_terms look like min(30, 30) or min(30, 0*a).
+
+   :param minmax_terms: A list of minmax_term objects.
+   :type minmax_terms: list
+   :param cons_var_terms: A list of cons_var_term objects.
+   :type cons_var_terms: list
+   :param value_term: The value term.
+   :type value_term: str
+
+   :returns: Solution returned by solveset.
+
+
+.. function:: get_next(result)
+
+   Get next item in the result set.
+
+   :param result (: object:FiniteSet): The result returned by solveset.
+
+   :returns: The next item in result.
+
+
+.. function:: get_next_eval(result)
+
+   Return the evaluate next item from result.
+
+   :param result (: object:FiniteSet): The result returned by solveset.
+
+   :returns: The next item in result, evaluated by calling .evalf().
+
+
+.. function:: find_intersect(interval, low, high, left_open, right_open)
+
+   Return the intersect of the interval with the required interval
+   specified by low, high, left_open, and right_open.
+
+   :param interval (: object:Interval): An Interval object.
+   :param low: The lower bound of the variable.
+   :type low: float
+   :param high: The upper bound of the variable.
+   :type high: float
+   :param left_open: True if the bound is open on the left.
+   :type left_open: bool
+   :param right_open: True if the bound is open on the right.
+   :type right_open: bool
+
+   :returns: object:Interval: The intersection of the interval with required
+             interval.
+
+
+.. function:: append_interval_complexes(interval, eq, low, high, results)
+
+   Handle the case when the result is S.Complexes.
+
+   :param interval (: object:Interval): An Interval object.
+   :param eq: The equation to be solved.
+   :type eq: str
+   :param low: The lower bound of the variable.
+   :type low: float
+   :param high: The upper bound of the variable.
+   :type high: float
+   :param results: The list of final results.
+   :type results: list
+
+   :returns: None
+
+
+.. function:: append_interval_endpoints(interval, eq, result, results, low, high)
+
+   Handle the cases when result == interval.start or
+   result == interval.end.
+
+   :param interval (: object:Interval): An Interval object.
+   :param eq: The equation to be solved.
+   :type eq: str
+   :param result (: object:FiniteSet): The current result as FiniteSet object.
+   :param results: The list of final results.
+   :type results: list
+   :param low: The lower bound of the variable.
+   :type low: float
+   :param high: The upper bound of the variable.
+   :type high: float
+
+   :returns: None
+
+
+.. function:: process_results(results)
+
+   Process results depending on its length and return.
+
+   :param results: A list of final results.
+   :type results: list
+
+   :returns: The final result of the equation.
+
+
+.. function:: auto_solve(eq, var_name, low=0, high=1, left_open=True, right_open=True)
+
+   Automatically solve the equation.
+
+   :param eq: The equation to be solved.
+   :type eq: str
+   :param var_name: The name of the variable. E.g. "a".
+   :type var_name: str
+   :param low: The lower bound of the variable.
+   :type low: float
+   :param high: The upper bound of the variable.
+   :type high: float
+   :param left_open: True if the bound is open on the left.
+   :type left_open: bool
+   :param right_open: True if the bound is open on the right.
+   :type right_open: bool
+
+   :returns: The solution of the equation.
+
+

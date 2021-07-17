@@ -1,0 +1,709 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>solveminmax.solver &mdash; solveminmax 0.1.3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> solveminmax
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">solveminmax</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">1. About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">3. Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">4. Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../formatguide.html">5. Format Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html">6. Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../limitations.html">7. Limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usefulcommand.html">8. Useful Commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../version_history.html">Version History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contribute.html">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">solveminmax</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">solveminmax.solver</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/autoapi/solveminmax/solver/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-solveminmax.solver">
+<span id="solveminmax-solver"></span><h1><a class="reference internal" href="#module-solveminmax.solver" title="solveminmax.solver"><code class="xref py py-mod docutils literal notranslate"><span class="pre">solveminmax.solver</span></code></a><a class="headerlink" href="#module-solveminmax.solver" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#solveminmax.solver.get_lhs" title="solveminmax.solver.get_lhs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_lhs</span></code></a>(equation)</p></td>
+<td><p>Get the left-hand side of the equation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#solveminmax.solver.get_constants" title="solveminmax.solver.get_constants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_constants</span></code></a>(equation)</p></td>
+<td><p>Extract constants from the left-hand side of the equation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#solveminmax.solver.get_minmax_terms" title="solveminmax.solver.get_minmax_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_minmax_terms</span></code></a>(equation)</p></td>
+<td><p>Get a list of minmax terms.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#solveminmax.solver.get_cons_var_terms" title="solveminmax.solver.get_cons_var_terms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cons_var_terms</span></code></a>(equation)</p></td>
+<td><p>Get a list of cons_var_terms.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#solveminmax.solver.find_set_points" title="solveminmax.solver.find_set_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_set_points</span></code></a>(minmax_terms, var_name)</p></td>
+<td><p>Return a list of sorted set points.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#solveminmax.solver.create_intervals" title="solveminmax.solver.create_intervals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_intervals</span></code></a>(set_points, low=0, high=1, left_open=True, right_open=True)</p></td>
+<td><p>Create a list of intervals based on set_points.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#solveminmax.solver.get_validate_eq" title="solveminmax.solver.get_validate_eq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_validate_eq</span></code></a>(equation)</p></td>
+<td><p>Return a modified equation string with = replaced by ==.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#solveminmax.solver.random_interval" title="solveminmax.solver.random_interval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_interval</span></code></a>(interval)</p></td>
+<td><p>Generate a random number in the interval.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#solveminmax.solver.get_value_term" title="solveminmax.solver.get_value_term"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_value_term</span></code></a>(equation)</p></td>
+<td><p>Get the value term on the right hand side of the equation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#solveminmax.solver.knit_solver" title="solveminmax.solver.knit_solver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">knit_solver</span></code></a>(interval, minmax_terms, cons_var_terms, var_name)</p></td>
+<td><p>Generate a string based on minmax_terms and cons_var_terms to be fed</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#solveminmax.solver.reformat_and_solve" title="solveminmax.solver.reformat_and_solve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reformat_and_solve</span></code></a>(knit, value_term)</p></td>
+<td><p>Reformat the knit str to be compatible with sympy, then solve</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#solveminmax.solver.solve_linear_eq" title="solveminmax.solver.solve_linear_eq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">solve_linear_eq</span></code></a>(cons_var_terms, value_term, low, high, left_open, right_open)</p></td>
+<td><p>Solve a linear equation if the equation does not contain minmax_terms.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#solveminmax.solver.extract_val_from_str" title="solveminmax.solver.extract_val_from_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extract_val_from_str</span></code></a>(s)</p></td>
+<td><p>Extract value from string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#solveminmax.solver.minmax_replace_zeros" title="solveminmax.solver.minmax_replace_zeros"><code class="xref py py-obj docutils literal notranslate"><span class="pre">minmax_replace_zeros</span></code></a>(minmax_terms)</p></td>
+<td><p>Replace minmax_terms where coefficients before variables are 0 to proper</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#solveminmax.solver.solve_no_minmax_var" title="solveminmax.solver.solve_no_minmax_var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">solve_no_minmax_var</span></code></a>(minmax_terms, cons_var_terms, value_term)</p></td>
+<td><p>Solve the equation when there are no variables in minmax_terms.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#solveminmax.solver.get_next" title="solveminmax.solver.get_next"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_next</span></code></a>(result)</p></td>
+<td><p>Get next item in the result set.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#solveminmax.solver.get_next_eval" title="solveminmax.solver.get_next_eval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_next_eval</span></code></a>(result)</p></td>
+<td><p>Return the evaluate next item from result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#solveminmax.solver.find_intersect" title="solveminmax.solver.find_intersect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_intersect</span></code></a>(interval, low, high, left_open, right_open)</p></td>
+<td><p>Return the intersect of the interval with the required interval</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#solveminmax.solver.append_interval_complexes" title="solveminmax.solver.append_interval_complexes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">append_interval_complexes</span></code></a>(interval, eq, low, high, results)</p></td>
+<td><p>Handle the case when the result is S.Complexes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#solveminmax.solver.append_interval_endpoints" title="solveminmax.solver.append_interval_endpoints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">append_interval_endpoints</span></code></a>(interval, eq, result, results, low, high)</p></td>
+<td><p>Handle the cases when result == interval.start or</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#solveminmax.solver.process_results" title="solveminmax.solver.process_results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_results</span></code></a>(results)</p></td>
+<td><p>Process results depending on its length and return.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#solveminmax.solver.auto_solve" title="solveminmax.solver.auto_solve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">auto_solve</span></code></a>(eq, var_name, low=0, high=1, left_open=True, right_open=True)</p></td>
+<td><p>Automatically solve the equation.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.get_lhs">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">get_lhs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.get_lhs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the left-hand side of the equation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>equation</strong> (<em>str</em>) – The string of the equation to be solved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A string of the left-hand side of the equation.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.get_constants">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">get_constants</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.get_constants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract constants from the left-hand side of the equation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>equation</strong> (<em>str</em>) – A string of the equation to be solved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of constants on the LHS of the equation.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.get_minmax_terms">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">get_minmax_terms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.get_minmax_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of minmax terms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>equation</strong> (<em>str</em>) – A string of the equation to be solved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of minmax_term objects.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.get_cons_var_terms">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">get_cons_var_terms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.get_cons_var_terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of cons_var_terms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>equation</strong> (<em>str</em>) – A string of the equation to be solved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of cons_var_term objects.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.find_set_points">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">find_set_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minmax_terms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.find_set_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of sorted set points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>minmax_terms</strong> (<em>list</em>) – A list of minmax_term objects.</p></li>
+<li><p><strong>var_name</strong> (<em>str</em>) – A character, which is the name of the variable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An empty list if there are variables but all coefficients are 0,
+such as min(30, 0*a), or if there are simply no variables, such as
+min(30, 30).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.create_intervals">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">create_intervals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_open</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_open</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.create_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a list of intervals based on set_points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>set_points</strong> (<em>list</em>) – A list of sorted set points.</p></li>
+<li><p><strong>low</strong> (<em>float</em>) – The lower bound of the variable.</p></li>
+<li><p><strong>high</strong> (<em>float</em>) – The higher bound of the variable.</p></li>
+<li><p><strong>left_open</strong> (<em>bool</em>) – True if the bound is open on the left.</p></li>
+<li><p><strong>right_open</strong> (<em>bool</em>) – True if the bound is open on the right.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of Interval objects based on set points.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.get_validate_eq">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">get_validate_eq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.get_validate_eq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a modified equation string with = replaced by ==.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>equation</strong> (<em>str</em>) – The equation to be solved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A modified equation string with = replaced by ==.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.random_interval">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">random_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.random_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a random number in the interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>(</strong> (<em>interval</em>) – object:Interval): An Interval object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A random number generated uniformly from the interval.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.get_value_term">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">get_value_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.get_value_term" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the value term on the right hand side of the equation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>equation</strong> (<em>str</em>) – The equation to be solved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The value term as a string.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.knit_solver">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">knit_solver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minmax_terms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cons_var_terms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.knit_solver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a string based on minmax_terms and cons_var_terms to be fed
+into the solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong> (<em>interval</em>) – object:Interval): An Interval object.</p></li>
+<li><p><strong>minmax_terms</strong> (<em>list</em>) – A list of minmax_term objects.</p></li>
+<li><p><strong>cons_var_terms</strong> (<em>list</em>) – A list of cons_var_term objects.</p></li>
+<li><p><strong>var_name</strong> (<em>str</em>) – The character of the variable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A knitted string of the equation.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.reformat_and_solve">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">reformat_and_solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">knit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_term</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.reformat_and_solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reformat the knit str to be compatible with sympy, then solve
+with solveset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>knit</strong> (<em>str</em>) – The knitted equation string.</p></li>
+<li><p><strong>value_term</strong> (<em>str</em>) – The value term of the equation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Solution after being solved by solveset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.solve_linear_eq">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">solve_linear_eq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cons_var_terms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_term</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_open</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_open</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.solve_linear_eq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve a linear equation if the equation does not contain minmax_terms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cons_var_terms</strong> (<em>list</em>) – A list of cons_var_term objects.</p></li>
+<li><p><strong>value_term</strong> (<em>str</em>) – The value term of the equation.</p></li>
+<li><p><strong>low</strong> (<em>float</em>) – The lower bound of the variable.</p></li>
+<li><p><strong>high</strong> (<em>float</em>) – The upper bound of the variable.</p></li>
+<li><p><strong>left_open</strong> (<em>bool</em>) – True if the bound is open on the left.</p></li>
+<li><p><strong>right_open</strong> (<em>bool</em>) – True if the bound is open on the right.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Solution after being solved by solveset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.extract_val_from_str">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">extract_val_from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.extract_val_from_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract value from string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>s</strong> (<em>str</em>) – A string that looks like “200*a”</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The float from the string.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.minmax_replace_zeros">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">minmax_replace_zeros</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minmax_terms</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.minmax_replace_zeros" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace minmax_terms where coefficients before variables are 0 to proper
+minmax_terms reformatted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>minmax_terms</strong> (<em>list</em>) – A list of minmax_term objects.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.solve_no_minmax_var">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">solve_no_minmax_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minmax_terms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cons_var_terms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_term</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.solve_no_minmax_var" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve the equation when there are no variables in minmax_terms.</p>
+<p>For example, when minmax_terms look like min(30, 30) or min(30, 0*a).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>minmax_terms</strong> (<em>list</em>) – A list of minmax_term objects.</p></li>
+<li><p><strong>cons_var_terms</strong> (<em>list</em>) – A list of cons_var_term objects.</p></li>
+<li><p><strong>value_term</strong> (<em>str</em>) – The value term.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Solution returned by solveset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.get_next">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">get_next</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.get_next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get next item in the result set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>(</strong> (<em>result</em>) – object:FiniteSet): The result returned by solveset.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The next item in result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.get_next_eval">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">get_next_eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.get_next_eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the evaluate next item from result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>(</strong> (<em>result</em>) – object:FiniteSet): The result returned by solveset.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The next item in result, evaluated by calling .evalf().</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.find_intersect">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">find_intersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_open</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_open</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.find_intersect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the intersect of the interval with the required interval
+specified by low, high, left_open, and right_open.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong> (<em>interval</em>) – object:Interval): An Interval object.</p></li>
+<li><p><strong>low</strong> (<em>float</em>) – The lower bound of the variable.</p></li>
+<li><p><strong>high</strong> (<em>float</em>) – The upper bound of the variable.</p></li>
+<li><p><strong>left_open</strong> (<em>bool</em>) – True if the bound is open on the left.</p></li>
+<li><p><strong>right_open</strong> (<em>bool</em>) – True if the bound is open on the right.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object:Interval: The intersection of the interval with required
+interval.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.append_interval_complexes">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">append_interval_complexes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.append_interval_complexes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle the case when the result is S.Complexes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong> (<em>interval</em>) – object:Interval): An Interval object.</p></li>
+<li><p><strong>eq</strong> (<em>str</em>) – The equation to be solved.</p></li>
+<li><p><strong>low</strong> (<em>float</em>) – The lower bound of the variable.</p></li>
+<li><p><strong>high</strong> (<em>float</em>) – The upper bound of the variable.</p></li>
+<li><p><strong>results</strong> (<em>list</em>) – The list of final results.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.append_interval_endpoints">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">append_interval_endpoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.append_interval_endpoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle the cases when result == interval.start or
+result == interval.end.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong> (<em>result</em>) – object:Interval): An Interval object.</p></li>
+<li><p><strong>eq</strong> (<em>str</em>) – The equation to be solved.</p></li>
+<li><p><strong>(</strong> – object:FiniteSet): The current result as FiniteSet object.</p></li>
+<li><p><strong>results</strong> (<em>list</em>) – The list of final results.</p></li>
+<li><p><strong>low</strong> (<em>float</em>) – The lower bound of the variable.</p></li>
+<li><p><strong>high</strong> (<em>float</em>) – The upper bound of the variable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.process_results">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">process_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.process_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process results depending on its length and return.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>results</strong> (<em>list</em>) – A list of final results.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The final result of the equation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.solver.auto_solve">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">auto_solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_open</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_open</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.solver.auto_solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Automatically solve the equation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eq</strong> (<em>str</em>) – The equation to be solved.</p></li>
+<li><p><strong>var_name</strong> (<em>str</em>) – The name of the variable. E.g. “a”.</p></li>
+<li><p><strong>low</strong> (<em>float</em>) – The lower bound of the variable.</p></li>
+<li><p><strong>high</strong> (<em>float</em>) – The upper bound of the variable.</p></li>
+<li><p><strong>left_open</strong> (<em>bool</em>) – True if the bound is open on the left.</p></li>
+<li><p><strong>right_open</strong> (<em>bool</em>) – True if the bound is open on the right.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The solution of the equation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Yewen Zhou.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

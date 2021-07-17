@@ -1,4 +1,4 @@
-from solveminmax import solver
+from src.solveminmax import solver
 import matplotlib.pyplot as plt
 import numpy as np
 

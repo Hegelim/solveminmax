@@ -1,4 +1,4 @@
-from solveminmax.solver import auto_solve
+from src.solveminmax.solver import auto_solve
 
 linear_eqs = [
     "20*a - 20*a = 0",

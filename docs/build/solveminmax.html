@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>solveminmax package &mdash; solveminmax 0.1.3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. About" href="about.html" />
+    <link rel="prev" title="solveminmax" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> solveminmax
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">solveminmax</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">solveminmax package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-solveminmax.cons_var_term">solveminmax.cons_var_term module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solveminmax-main-module">solveminmax.main module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-solveminmax.minmax_term">solveminmax.minmax_term module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solveminmax-plot-module">solveminmax.plot module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solveminmax-solver-module">solveminmax.solver module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-solveminmax">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#solveminmax.cons_var_term.ConsVarTerm">ConsVarTerm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#solveminmax.minmax_term.MinMaxTerm">MinMaxTerm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">1. About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">3. Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">4. Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formatguide.html">5. Format Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">6. Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">7. Limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usefulcommand.html">8. Useful Commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="version_history.html">Version History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">solveminmax</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">solveminmax</a> &raquo;</li>
+        
+      <li>solveminmax package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/solveminmax.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="solveminmax-package">
+<h1>solveminmax package<a class="headerlink" href="#solveminmax-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-solveminmax.cons_var_term">
+<span id="solveminmax-cons-var-term-module"></span><h2>solveminmax.cons_var_term module<a class="headerlink" href="#module-solveminmax.cons_var_term" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="solveminmax.cons_var_term.ConsVarTerm">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">solveminmax.cons_var_term.</span></span><span class="sig-name descname"><span class="pre">ConsVarTerm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cons_var_tuple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.cons_var_term.ConsVarTerm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="solveminmax.cons_var_term.ConsVarTerm.coef">
+<span class="sig-name descname"><span class="pre">coef</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.cons_var_term.ConsVarTerm.coef" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="solveminmax.cons_var_term.ConsVarTerm.operator">
+<span class="sig-name descname"><span class="pre">operator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.cons_var_term.ConsVarTerm.operator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="solveminmax.cons_var_term.ConsVarTerm.var">
+<span class="sig-name descname"><span class="pre">var</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.cons_var_term.ConsVarTerm.var" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="solveminmax-main-module">
+<h2>solveminmax.main module<a class="headerlink" href="#solveminmax-main-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-solveminmax.minmax_term">
+<span id="solveminmax-minmax-term-module"></span><h2>solveminmax.minmax_term module<a class="headerlink" href="#module-solveminmax.minmax_term" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">solveminmax.minmax_term.</span></span><span class="sig-name descname"><span class="pre">MinMaxTerm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minmax_term</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm.coef">
+<span class="sig-name descname"><span class="pre">coef</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm.coef" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm.left_right_half">
+<span class="sig-name descname"><span class="pre">left_right_half</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm.left_right_half" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm.left_right_nums">
+<span class="sig-name descname"><span class="pre">left_right_nums</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm.left_right_nums" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm.minmax_op">
+<span class="sig-name descname"><span class="pre">minmax_op</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm.minmax_op" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm.minmax_tuple">
+<span class="sig-name descname"><span class="pre">minmax_tuple</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm.minmax_tuple" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm.operator">
+<span class="sig-name descname"><span class="pre">operator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm.operator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="solveminmax-plot-module">
+<h2>solveminmax.plot module<a class="headerlink" href="#solveminmax-plot-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="solveminmax-solver-module">
+<h2>solveminmax.solver module<a class="headerlink" href="#solveminmax-solver-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-solveminmax">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-solveminmax" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="about.html" class="btn btn-neutral float-right" title="1. About" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="modules.html" class="btn btn-neutral float-left" title="solveminmax" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Yewen Zhou.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
