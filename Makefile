@@ -10,9 +10,6 @@ test:
 	$ python -m pytest
 
 generateapi:
-	$ cd docs
-	$ make clean
-	$ cd ..
-	$ sphinx-apidoc -f -e -o docs/source/ src/solveminmax/
-	$ cd docs
-	$ make html
+	$(MAKE) -C docs clean; \
+	$ sphinx-apidoc -fo docs/source/ src/; \
+	$(MAKE) -C docs html; \
