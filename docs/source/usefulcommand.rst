@@ -34,15 +34,15 @@ Pip install with proxy::
 Make Documentation
 ==================
 
-Auto-generate html based on reStructuredText files::
+Auto-generate documentation when you are at the root directory::
 
     $cd docs
     $make clean
     $make html
 
-Auto-generate API::
+Auto-generate API when you are at the root directory::
 
-    $sphinx-apidoc
+    $sphinx-apidoc -f -o docs/source/ src/
 
 Upload a package
 ================

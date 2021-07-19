@@ -212,14 +212,14 @@ on a regular basis.</p>
 </div>
 <div class="section" id="make-documentation">
 <h2><span class="section-number">8.3. </span>Make Documentation<a class="headerlink" href="#make-documentation" title="Permalink to this headline">¶</a></h2>
-<p>Auto-generate html based on reStructuredText files:</p>
+<p>Auto-generate documentation when you are at the root directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$cd docs
 $make clean
 $make html
 </pre></div>
 </div>
-<p>Auto-generate API:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$sphinx-apidoc
+<p>Auto-generate API when you are at the root directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$sphinx-apidoc -f -o docs/source/ src/
 </pre></div>
 </div>
 </div>
