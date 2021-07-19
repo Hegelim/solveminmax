@@ -88,7 +88,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">solveminmax</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">solveminmax package</a><ul>
@@ -104,7 +104,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">User Guide</span></p>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="about.html">1. About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">2. Installation</a></li>
@@ -115,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="limitations.html">7. Limitations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usefulcommand.html">8. Useful Commands</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Development</span></p>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="version_history.html">Version History</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribution</a></li>
@@ -277,7 +277,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>(</strong> (<em>interval</em>) – object:Interval): An Interval object.</p></li>
+<li><p><strong>interval (</strong> – object:Interval): An Interval object.</p></li>
 <li><p><strong>eq</strong> (<em>str</em>) – The equation to be solved.</p></li>
 <li><p><strong>low</strong> (<em>float</em>) – The lower bound of the variable.</p></li>
 <li><p><strong>high</strong> (<em>float</em>) – The upper bound of the variable.</p></li>
@@ -297,9 +297,9 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>(</strong> (<em>result</em>) – object:Interval): An Interval object.</p></li>
+<li><p><strong>interval (</strong> – object:Interval): An Interval object.</p></li>
 <li><p><strong>eq</strong> (<em>str</em>) – The equation to be solved.</p></li>
-<li><p><strong>(</strong> – object:FiniteSet): The current result as FiniteSet object.</p></li>
+<li><p><strong>result (</strong> – object:FiniteSet): The current result as FiniteSet object.</p></li>
 <li><p><strong>results</strong> (<em>list</em>) – The list of final results.</p></li>
 <li><p><strong>low</strong> (<em>float</em>) – The lower bound of the variable.</p></li>
 <li><p><strong>high</strong> (<em>float</em>) – The upper bound of the variable.</p></li>
@@ -380,7 +380,7 @@ specified by low, high, left_open, and right_open.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>(</strong> (<em>interval</em>) – object:Interval): An Interval object.</p></li>
+<li><p><strong>interval (</strong> – object:Interval): An Interval object.</p></li>
 <li><p><strong>low</strong> (<em>float</em>) – The lower bound of the variable.</p></li>
 <li><p><strong>high</strong> (<em>float</em>) – The upper bound of the variable.</p></li>
 <li><p><strong>left_open</strong> (<em>bool</em>) – True if the bound is open on the left.</p></li>
@@ -452,7 +452,7 @@ min(30, 30).</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="solveminmax.solver.get_lhs">
-<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">get_lhs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#solveminmax.solver.get_lhs" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">solveminmax.solver.</span></span><span class="sig-name descname"><span class="pre">get_lhs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#solveminmax.solver.get_lhs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the left-hand side of the equation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -487,7 +487,7 @@ min(30, 30).</p>
 <dd><p>Get next item in the result set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>(</strong> (<em>result</em>) – object:FiniteSet): The result returned by solveset.</p>
+<dd class="field-odd"><p><strong>result (</strong> – object:FiniteSet): The result returned by solveset.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The next item in result.</p>
@@ -501,7 +501,7 @@ min(30, 30).</p>
 <dd><p>Return the evaluate next item from result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>(</strong> (<em>result</em>) – object:FiniteSet): The result returned by solveset.</p>
+<dd class="field-odd"><p><strong>result (</strong> – object:FiniteSet): The result returned by solveset.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The next item in result, evaluated by calling .evalf().</p>
@@ -550,7 +550,7 @@ min(30, 30).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>(</strong> (<em>interval</em>) – object:Interval): An Interval object.</p></li>
+<li><p><strong>interval (</strong> – object:Interval): An Interval object.</p></li>
 <li><p><strong>minmax_terms</strong> (<em>list</em>) – A list of minmax_term objects.</p></li>
 <li><p><strong>cons_var_terms</strong> (<em>list</em>) – A list of cons_var_term objects.</p></li>
 <li><p><strong>var_name</strong> (<em>str</em>) – The character of the variable.</p></li>
@@ -599,7 +599,7 @@ min(30, 30).</p>
 <dd><p>Generate a random number in the interval.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>(</strong> (<em>interval</em>) – object:Interval): An Interval object.</p>
+<dd class="field-odd"><p><strong>interval (</strong> – object:Interval): An Interval object.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A random number generated uniformly from the interval.</p>
