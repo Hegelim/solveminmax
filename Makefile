@@ -9,3 +9,10 @@ install:
 test:
 	$ python -m pytest
 
+generateapi:
+	$ cd docs
+	$ make clean
+	$ cd ..
+	$ sphinx-apidoc -f -e -o docs/source/ src/solveminmax/
+	$ cd docs
+	$ make html

@@ -44,7 +44,7 @@ Auto-generate documentation when you are at the root directory::
     $ cd docs
     $ make clean
     $ cd ..
-    $ sphinx-apidoc -f -o docs/source/ src/solveminmax/
+    $ sphinx-apidoc -f -e -o docs/source/ src/solveminmax/
     $ make html
 
 Upload a package
