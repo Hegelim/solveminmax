@@ -12,14 +12,6 @@ solveminmax.cons\_var\_term module
    :undoc-members:
    :show-inheritance:
 
-solveminmax.main module
------------------------
-
-.. automodule:: solveminmax.main
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 solveminmax.minmax\_term module
 -------------------------------
 
@@ -40,6 +32,14 @@ solveminmax.solver module
 -------------------------
 
 .. automodule:: solveminmax.solver
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+solveminmax.test module
+-----------------------
+
+.. automodule:: solveminmax.test
    :members:
    :undoc-members:
    :show-inheritance:
