@@ -4,14 +4,45 @@ solveminmax package
 Submodules
 ----------
 
-.. toctree::
-   :maxdepth: 4
+solveminmax.cons\_var\_term module
+----------------------------------
 
-   solveminmax.cons_var_term
-   solveminmax.main
-   solveminmax.minmax_term
-   solveminmax.plot
-   solveminmax.solver
+.. automodule:: solveminmax.cons_var_term
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+solveminmax.main module
+-----------------------
+
+.. automodule:: solveminmax.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+solveminmax.minmax\_term module
+-------------------------------
+
+.. automodule:: solveminmax.minmax_term
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+solveminmax.plot module
+-----------------------
+
+.. automodule:: solveminmax.plot
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+solveminmax.solver module
+-------------------------
+
+.. automodule:: solveminmax.solver
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Module contents
 ---------------
