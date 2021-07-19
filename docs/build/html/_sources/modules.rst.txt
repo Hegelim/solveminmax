@@ -1,5 +1,5 @@
-solveminmax
-===========
+src
+===
 
 .. toctree::
    :maxdepth: 4
