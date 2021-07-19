@@ -1,4 +1,4 @@
-from src.solveminmax import solver
+from src.solveminmax.solver import auto_solve
 
 linear_eqs = [
     "20*a - 20*a = 0",
@@ -58,6 +58,6 @@ if __name__ == "__main__":
         print(f"Solving in {div}...")
         for i, eq in enumerate(eval(div)):
             print(f"Solving {i + 1}: {eq}")
-            sol = solver.auto_solve(eq, "a")
+            sol = auto_solve(eq, "a")
             print(f"Solution is {sol}")
             print()
