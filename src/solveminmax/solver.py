@@ -8,14 +8,14 @@ from src.solveminmax.cons_var_term import ConsVarTerm
 # TODO: what if the interval is infinity on one end?
 
 
-def get_lhs(equation):
+def get_lhs(equation: str) -> str:
     """Get the left-hand side of the equation.
 
     Args:
-        equation (str): The string of the equation to be solved.
+        equation: The string of the equation to be solved.
 
     Returns:
-        str: A string of the left-hand side of the equation.
+        A string of the left-hand side of the equation.
 
     """
     index = equation.find("=")
@@ -192,8 +192,7 @@ def get_value_term(equation):
 
 
 def knit_solver(interval, minmax_terms, cons_var_terms, var_name):
-    """Generate a string based on minmax_terms and cons_var_terms to be fed
-    into the solver.
+    """Generate a string to be fed into the solver.
 
     Args:
         interval (:object:Interval): An Interval object.
@@ -238,8 +237,7 @@ def knit_solver(interval, minmax_terms, cons_var_terms, var_name):
 
 
 def reformat_and_solve(knit, value_term):
-    """Reformat the knit str to be compatible with sympy, then solve
-    with solveset.
+    """Reformat the knit str then solve with solveset.
 
     Args:
         knit (str): The knitted equation string.
@@ -296,8 +294,7 @@ def extract_val_from_str(s):
 
 
 def minmax_replace_zeros(minmax_terms):
-    """Replace minmax_terms where coefficients before variables are 0 to proper
-    minmax_terms reformatted.
+    """Replace zero coefficients minmax_terms with reformatted minmax_terms.
 
     Args:
         minmax_terms (list): A list of minmax_term objects.
@@ -422,8 +419,7 @@ def append_interval_complexes(interval, eq, low, high, results):
 
 
 def append_interval_endpoints(interval, eq, result, results, low, high):
-    """Handle the cases when result == interval.start or
-    result == interval.end.
+    """Handle the cases when result is interval.start or result is interval.end.
 
     Args:
         interval (:object:Interval): An Interval object.
