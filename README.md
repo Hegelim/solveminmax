@@ -11,8 +11,7 @@ by taking advantage of the powerful `sympy` library.
 For instance, you can solve `min(400, 500x) + min(200, 500x) + min(0, 500x) = 700`
 with the assumption that x is within range (0, 1).
 ****
-**Documentation**:
-https://solveminmax.readthedocs.io/en/latest/
+**Documentation**: https://hegelim.github.io/solveminmax/  
 ****
 **Legacy Note**:  
 From v0.1.0, the former module, `solve-sum-minmax` was renamed to `solveminmax`

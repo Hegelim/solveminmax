@@ -419,7 +419,7 @@ def append_interval_complexes(interval, eq, low, high, results):
 
 
 def append_interval_endpoints(interval, eq, result, results, low, high):
-    """Handle the cases when result is interval.start or result is interval.end.
+    """Handle the cases when result is interval.start or is interval.end.
 
     Args:
         interval (:object:Interval): An Interval object.
