@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>7. Limitations &mdash; solveminmax 0.1.3 documentation</title>
+  <title>8. Useful Commands &mdash; solveminmax 0.1.3 documentation</title>
   
 
   
@@ -42,8 +42,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="8. Useful Commands" href="usefulcommand.html" />
-    <link rel="prev" title="6. Testing" href="testing.html" /> 
+    <link rel="next" title="Version History" href="version_history.html" />
+    <link rel="prev" title="7. Limitations" href="limitations.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,7 +90,7 @@
             
               <p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">solveminmax</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="current">
@@ -100,8 +100,14 @@
 <li class="toctree-l1"><a class="reference internal" href="examples.html">4. Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="formatguide.html">5. Format Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">6. Testing</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">7. Limitations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usefulcommand.html">8. Useful Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">7. Limitations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. Useful Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pypi-mirrors">8.1. PyPI Mirrors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-proxy">8.2. Configure Proxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#make-documentation">8.3. Make Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#upload-a-package">8.4. Upload a package</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
@@ -155,13 +161,13 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li><span class="section-number">7. </span>Limitations</li>
+      <li><span class="section-number">8. </span>Useful Commands</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/limitations.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/usefulcommand.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -174,17 +180,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="limitations">
-<h1><span class="section-number">7. </span>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h1>
-<p>Currently, the module is still under development with the following limitations:</p>
-<ul class="simple">
-<li><p>So far, the module only supports <cite>a</cite> as the variable.</p></li>
-<li><p>Because the module heavily depends on regular expressions,
-the user needs to follow the format of the
-equation carefully, or the module might break.</p></li>
-<li><p>The equation must be uni-variate, i.e., there can only be one independent
-variable.</p></li>
-</ul>
+  <div class="section" id="useful-commands">
+<h1><span class="section-number">8. </span>Useful Commands<a class="headerlink" href="#useful-commands" title="Permalink to this headline">¶</a></h1>
+<p>For developers, there are a set of useful commands that might be useful to use
+on a regular basis.</p>
+<div class="section" id="pypi-mirrors">
+<h2><span class="section-number">8.1. </span>PyPI Mirrors<a class="headerlink" href="#pypi-mirrors" title="Permalink to this headline">¶</a></h2>
+<p>To install a package using Tsinghua tuna PyPI mirrors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-proxy">
+<h2><span class="section-number">8.2. </span>Configure Proxy<a class="headerlink" href="#configure-proxy" title="Permalink to this headline">¶</a></h2>
+<p>Set a http proxy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git config --global http.proxy http://proxyaddress:port
+</pre></div>
+</div>
+<p>Reset proxy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git config --global --unset http.proxy
+</pre></div>
+</div>
+<p>Check the current proxy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git config --global --get http.proxy
+</pre></div>
+</div>
+<p>Pip install with proxy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ https_proxy=&#39;http://address:port&#39; pip install some_package
+</pre></div>
+</div>
+<p>Or alternatively:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export https_proxy=&#39;http://address:port&#39;
+$ pip install some_package
+</pre></div>
+</div>
+</div>
+<div class="section" id="make-documentation">
+<h2><span class="section-number">8.3. </span>Make Documentation<a class="headerlink" href="#make-documentation" title="Permalink to this headline">¶</a></h2>
+<p>Auto-generate documentation when you are at the root directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd docs
+$ make clean
+$ cd ..
+$ sphinx-apidoc -f -e -o docs/source/ src/solveminmax/
+$ make html
+</pre></div>
+</div>
+</div>
+<div class="section" id="upload-a-package">
+<h2><span class="section-number">8.4. </span>Upload a package<a class="headerlink" href="#upload-a-package" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -193,8 +237,8 @@ variable.</p></li>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="usefulcommand.html" class="btn btn-neutral float-right" title="8. Useful Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="testing.html" class="btn btn-neutral float-left" title="6. Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="version_history.html" class="btn btn-neutral float-right" title="Version History" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="limitations.html" class="btn btn-neutral float-left" title="7. Limitations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

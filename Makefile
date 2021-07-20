@@ -11,14 +11,10 @@ test:
 
 generateapi:
 	$(MAKE) -C docs clean; \
-	$ sphinx-apidoc -fo docs/source/ src/; \
+	$ sphinx-apidoc -fo docs/source/ src/solveminmax/; \
 	$(MAKE) -C docs html; \
 
 updateyaml:
 	$ git add .readthedocs.yaml; \
 	$ git commit -m "Update .readthedocs.yaml"; \
 	$ git push
-
-sphinxbuild:
-	$ cd docs; \
-	$ sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
