@@ -1,0 +1,3 @@
+[submodule "docs/build/html/solveminmaxdoc"]
+	path = docs/build/html/solveminmaxdoc
+	url = https://github.com/Hegelim/solveminmaxdoc.git
