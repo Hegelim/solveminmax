@@ -469,7 +469,7 @@ def process_results(results):
 
     """
     if len(results) == 0:
-        return None
+        return EmptySet
     elif len(results) == 1:
         return results[0]
     else:

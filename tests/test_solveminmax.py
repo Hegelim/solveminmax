@@ -1,4 +1,4 @@
-from sympy import FiniteSet, Interval
+from sympy import FiniteSet, Interval, EmptySet
 from src.solveminmax import solver
 
 
@@ -62,11 +62,11 @@ class Test:
 
     def test_12(self):
         eq = "min(400*a, 100) = 500"
-        assert solver.auto_solve(eq, "a") is None
+        assert solver.auto_solve(eq, "a") is EmptySet
 
     def test_13(self):
         eq = "max(400*a, 100) = 50"
-        assert solver.auto_solve(eq, "a") is None
+        assert solver.auto_solve(eq, "a") is EmptySet
 
     def test_14(self):
         eq = "20*a - 20*a = 0"

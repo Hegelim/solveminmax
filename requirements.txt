@@ -2,5 +2,6 @@ numpy==1.21.0
 matplotlib==3.4.2
 sympy==1.8
 setuptools==57.4.0
+pytest==6.2.4
 
 
