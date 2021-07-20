@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>4. Examples &mdash; solveminmax 0.1.3 documentation</title>
+  <title>8. Make Commands &mdash; solveminmax 0.1.3 documentation</title>
   
 
   
@@ -42,8 +42,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="5. Format Guide" href="formatguide.html" />
-    <link rel="prev" title="3. Quick Start" href="quickstart.html" /> 
+    <link rel="next" title="9. Useful Commands" href="usefulcommand.html" />
+    <link rel="prev" title="7. Limitations" href="limitations.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -97,11 +97,11 @@
 <li class="toctree-l1"><a class="reference internal" href="about.html">1. About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">2. Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">3. Quick Start</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">4. Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="formatguide.html">5. Format Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">6. Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="limitations.html">7. Limitations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="makecommand.html">8. Make Commands</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. Make Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usefulcommand.html">9. Useful Commands</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
@@ -156,13 +156,13 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li><span class="section-number">4. </span>Examples</li>
+      <li><span class="section-number">8. </span>Make Commands</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/examples.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/makecommand.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -175,39 +175,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="examples">
-<h1><span class="section-number">4. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<p>The module supports several kinds of equations that involve minimum and maximum.
-To begin with, it supports linear equations without min/max terms:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">solveminmax</span> <span class="kn">import</span> <span class="n">solver</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">eq</span> <span class="o">=</span> <span class="s2">&quot;10*a = 150&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">solver</span><span class="o">.</span><span class="n">auto_solve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
-<span class="go">FiniteSet(15)</span>
+  <div class="section" id="make-commands">
+<h1><span class="section-number">8. </span>Make Commands<a class="headerlink" href="#make-commands" title="Permalink to this headline">¶</a></h1>
+<p>If you are familiar with Make, then you can save your life by automating
+a set of commands.</p>
+<p>To install the package on your local machine:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make install
 </pre></div>
 </div>
-<p>It handles general minimum and maximum equations well and returns exact answers
-including Rationals and intervals:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">solveminmax</span> <span class="kn">import</span> <span class="n">solver</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">eq_1</span> <span class="o">=</span> <span class="s2">&quot;min(400, 600*a) = 400&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">solver</span><span class="o">.</span><span class="n">auto_solve</span><span class="p">(</span><span class="n">eq_1</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
-<span class="go">Interval.Ropen(0.666666666666667, 1)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">eq_2</span> <span class="o">=</span> <span class="s2">&quot;min(500, 600*a) + max(400, 500*a) = 500&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">solver</span><span class="o">.</span><span class="n">auto_solve</span><span class="p">(</span><span class="n">eq_2</span><span class="p">,</span> <span class="s2">&quot;eq&quot;</span><span class="p">)</span>
-<span class="go">FiniteSet(1/6)</span>
+<p>To run pytest:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make test
 </pre></div>
 </div>
-<p>For equations that have no solutions, the module returns <code class="code docutils literal notranslate"><span class="pre">None</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">solveminmax</span> <span class="kn">import</span> <span class="n">solver</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">eq_1</span> <span class="o">=</span> <span class="s2">&quot;min(400*a, 100) = 500&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">solver</span><span class="o">.</span><span class="n">auto_solve</span><span class="p">(</span><span class="n">eq_1</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">))</span>
-<span class="go">None</span>
-</pre></div>
-</div>
-<p>It also supports basic error-handling, such as:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">solveminmax</span> <span class="kn">import</span> <span class="n">solver</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">eq_1</span> <span class="o">=</span> <span class="s2">&quot;min(20*a) = 300&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">solver</span><span class="o">.</span><span class="n">auto_solve</span><span class="p">(</span><span class="n">eq_1</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
-<span class="go">ValueError: MinMax terms malformed!</span>
+<p>To auto-generate api documentation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make generateapi
 </pre></div>
 </div>
 </div>
@@ -218,8 +199,8 @@ including Rationals and intervals:</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="formatguide.html" class="btn btn-neutral float-right" title="5. Format Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="quickstart.html" class="btn btn-neutral float-left" title="3. Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usefulcommand.html" class="btn btn-neutral float-right" title="9. Useful Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="limitations.html" class="btn btn-neutral float-left" title="7. Limitations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

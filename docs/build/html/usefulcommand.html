@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>8. Useful Commands &mdash; solveminmax 0.1.3 documentation</title>
+  <title>9. Useful Commands &mdash; solveminmax 0.1.3 documentation</title>
   
 
   
@@ -43,7 +43,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Version History" href="version_history.html" />
-    <link rel="prev" title="7. Limitations" href="limitations.html" /> 
+    <link rel="prev" title="8. Make Commands" href="makecommand.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,7 +90,7 @@
             
               <p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">solveminmax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="current">
@@ -101,11 +101,11 @@
 <li class="toctree-l1"><a class="reference internal" href="formatguide.html">5. Format Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">6. Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="limitations.html">7. Limitations</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">8. Useful Commands</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#pypi-mirrors">8.1. PyPI Mirrors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#configure-proxy">8.2. Configure Proxy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#make-documentation">8.3. Make Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#upload-a-package">8.4. Upload a package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="makecommand.html">8. Make Commands</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. Useful Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pypi-mirrors">9.1. PyPI Mirrors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-proxy">9.2. Configure Proxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#upload-a-package">9.3. Upload a package</a></li>
 </ul>
 </li>
 </ul>
@@ -161,7 +161,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li><span class="section-number">8. </span>Useful Commands</li>
+      <li><span class="section-number">9. </span>Useful Commands</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -181,18 +181,18 @@
            <div itemprop="articleBody">
             
   <div class="section" id="useful-commands">
-<h1><span class="section-number">8. </span>Useful Commands<a class="headerlink" href="#useful-commands" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">9. </span>Useful Commands<a class="headerlink" href="#useful-commands" title="Permalink to this headline">¶</a></h1>
 <p>For developers, there are a set of useful commands that might be useful to use
 on a regular basis.</p>
 <div class="section" id="pypi-mirrors">
-<h2><span class="section-number">8.1. </span>PyPI Mirrors<a class="headerlink" href="#pypi-mirrors" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.1. </span>PyPI Mirrors<a class="headerlink" href="#pypi-mirrors" title="Permalink to this headline">¶</a></h2>
 <p>To install a package using Tsinghua tuna PyPI mirrors:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package
 </pre></div>
 </div>
 </div>
 <div class="section" id="configure-proxy">
-<h2><span class="section-number">8.2. </span>Configure Proxy<a class="headerlink" href="#configure-proxy" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.2. </span>Configure Proxy<a class="headerlink" href="#configure-proxy" title="Permalink to this headline">¶</a></h2>
 <p>Set a http proxy:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git config --global http.proxy http://proxyaddress:port
 </pre></div>
@@ -215,19 +215,8 @@ $ pip install some_package
 </pre></div>
 </div>
 </div>
-<div class="section" id="make-documentation">
-<h2><span class="section-number">8.3. </span>Make Documentation<a class="headerlink" href="#make-documentation" title="Permalink to this headline">¶</a></h2>
-<p>Auto-generate documentation when you are at the root directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd docs
-$ make clean
-$ cd ..
-$ sphinx-apidoc -f -e -o docs/source/ src/solveminmax/
-$ make html
-</pre></div>
-</div>
-</div>
 <div class="section" id="upload-a-package">
-<h2><span class="section-number">8.4. </span>Upload a package<a class="headerlink" href="#upload-a-package" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.3. </span>Upload a package<a class="headerlink" href="#upload-a-package" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -238,7 +227,7 @@ $ make html
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="version_history.html" class="btn btn-neutral float-right" title="Version History" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="limitations.html" class="btn btn-neutral float-left" title="7. Limitations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="makecommand.html" class="btn btn-neutral float-left" title="8. Make Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

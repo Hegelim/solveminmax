@@ -36,16 +36,5 @@ Or alternatively::
     $ export https_proxy='http://address:port'
     $ pip install some_package
 
-Make Documentation
-==================
-
-Auto-generate documentation when you are at the root directory::
-
-    $ cd docs
-    $ make clean
-    $ cd ..
-    $ sphinx-apidoc -f -e -o docs/source/ src/solveminmax/
-    $ make html
-
 Upload a package
 ================

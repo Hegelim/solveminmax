@@ -24,6 +24,7 @@ solveminmax Documentation
    formatguide
    testing
    limitations
+   makecommand
    usefulcommand
 
 .. toctree::
