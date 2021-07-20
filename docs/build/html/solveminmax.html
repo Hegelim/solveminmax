@@ -199,20 +199,57 @@
 <dt class="sig sig-object py" id="solveminmax.cons_var_term.ConsVarTerm">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">solveminmax.cons_var_term.</span></span><span class="sig-name descname"><span class="pre">ConsVarTerm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cons_var_tuple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.cons_var_term.ConsVarTerm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The ConsVarTerm class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_operator</strong> (<em>str</em>) – The operator of the cons_var_term.</p></li>
+<li><p><strong>_coef</strong> (<em>str</em>) – The coefficient of the cons_var_term.</p></li>
+<li><p><strong>_var</strong> (<em>str</em>) – The variable of the cons_var_term.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="solveminmax.cons_var_term.ConsVarTerm.coef">
 <span class="sig-name descname"><span class="pre">coef</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.cons_var_term.ConsVarTerm.coef" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the coefficient of the cons_var_term.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coefficient of the cons_var_term.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="solveminmax.cons_var_term.ConsVarTerm.operator">
 <span class="sig-name descname"><span class="pre">operator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.cons_var_term.ConsVarTerm.operator" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the operator of the cons_var_term.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The operator of the cons_var_term.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="solveminmax.cons_var_term.ConsVarTerm.var">
 <span class="sig-name descname"><span class="pre">var</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.cons_var_term.ConsVarTerm.var" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the variable of the cons_var_term.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The variable of the cons_var_term.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -223,35 +260,128 @@
 <dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">solveminmax.minmax_term.</span></span><span class="sig-name descname"><span class="pre">MinMaxTerm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minmax_term</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The MinMaxTerm class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_operator</strong> (<em>str</em>) – The operator of the minmax terms.</p></li>
+<li><p><strong>_coef</strong> (<em>str</em>) – The coefficients for minmax terms.</p></li>
+<li><p><strong>_minmax_op</strong> (<em>str</em>) – Min or max operator of minmax terms.</p></li>
+<li><p><strong>_minmax_tuple</strong> (<em>str</em>) – A string of tuple, such as (30, 30*a).</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm.coef">
 <span class="sig-name descname"><span class="pre">coef</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm.coef" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the coefficient of minmax terms.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">minmax_term</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;(400, 400*a)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">MinMaxTerm</span><span class="p">(</span><span class="n">minmax_term</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">operator</span><span class="p">()</span>
+<span class="go">&#39;2&#39;</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coefficient of the minmax term.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm.left_right_half">
 <span class="sig-name descname"><span class="pre">left_right_half</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm.left_right_half" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the left and right half from minmax tuple.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">minmax_term</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;(400, 400*a)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">MinMaxTerm</span><span class="p">(</span><span class="n">minmax_term</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">left_right_half</span><span class="p">()</span>
+<span class="go">(&#39;400&#39;, &#39;400*a&#39;)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The left and right string in minmax tuple.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm.left_right_nums">
 <span class="sig-name descname"><span class="pre">left_right_nums</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm.left_right_nums" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the left and right numbers in minmax tuple.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">minmax_term</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;(400, 400*a)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">MinMaxTerm</span><span class="p">(</span><span class="n">minmax_term</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">left_right_nums</span><span class="p">()</span>
+<span class="go">(400.0, 400.0)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tuple containing left and right float numbers.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm.minmax_op">
 <span class="sig-name descname"><span class="pre">minmax_op</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm.minmax_op" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the minmax operator (whether min or max)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The minmax operator.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm.minmax_tuple">
 <span class="sig-name descname"><span class="pre">minmax_tuple</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm.minmax_tuple" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the minmax tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The minmax tuple.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="solveminmax.minmax_term.MinMaxTerm.operator">
 <span class="sig-name descname"><span class="pre">operator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.minmax_term.MinMaxTerm.operator" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the operator.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">minmax_term</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;(400, 400*a)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">MinMaxTerm</span><span class="p">(</span><span class="n">minmax_term</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">operator</span><span class="p">()</span>
+<span class="go">&#39;+&#39;</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The minmax operator.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -261,7 +391,19 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="solveminmax.plot.make_plot">
 <span class="sig-prename descclassname"><span class="pre">solveminmax.plot.</span></span><span class="sig-name descname"><span class="pre">make_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.plot.make_plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make plots.</p>
+<dd><p>Plot the equation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>equation</strong> (<em>str</em>) – The string of the equation.</p></li>
+<li><p><strong>low</strong> (<em>float</em>) – The lower bound of the variable.</p></li>
+<li><p><strong>high</strong> (<em>float</em>) – The upper bound of the variable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

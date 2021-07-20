@@ -4,7 +4,17 @@ import numpy as np
 
 
 def make_plot(equation, low=0, high=1):
-    """Make plots. """
+    """Plot the equation.
+
+    Args:
+        equation (str): The string of the equation.
+        low (float): The lower bound of the variable.
+        high (float): The upper bound of the variable.
+
+    Returns:
+        None
+
+    """
     lhs = solver.get_lhs(equation)
     value = solver.get_value_term(equation)
     replaced = lhs.replace("min", "np.minimum").replace("max", "np.maximum")
