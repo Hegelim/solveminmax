@@ -14,7 +14,7 @@ generateapi:
 	$ sphinx-apidoc -fo docs/source/ src/; \
 	$(MAKE) -C docs html; \
 
-updateyaml
+updateyaml:
 	$ git add .readthedocs.yaml; \
 	$ git commit -m "Update .readthedocs.yaml"; \
 	$ git push
