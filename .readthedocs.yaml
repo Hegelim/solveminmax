@@ -15,4 +15,8 @@ sphinx:
 python:
   version: 3.8
   install:
-    - requirements: requirements.txt
+    - method: setuptools
+      path: .
+    - method: pip
+      path: .
+      requirements: requirements.txt
