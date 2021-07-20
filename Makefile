@@ -13,3 +13,8 @@ generateapi:
 	$(MAKE) -C docs clean; \
 	$ sphinx-apidoc -fo docs/source/ src/; \
 	$(MAKE) -C docs html; \
+
+updateyaml
+	$ git add .readthedocs.yaml; \
+	$ git commit -m "Update .readthedocs.yaml"; \
+	$ git push
