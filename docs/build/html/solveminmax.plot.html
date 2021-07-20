@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>solveminmax package &mdash; solveminmax 0.1.3 documentation</title>
+  <title>solveminmax.plot module &mdash; solveminmax 0.1.3 documentation</title>
   
 
   
@@ -42,8 +42,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="solveminmax.cons_var_term module" href="solveminmax.cons_var_term.html" />
-    <link rel="prev" title="src" href="modules.html" /> 
+    <link rel="next" title="solveminmax.solver module" href="solveminmax.solver.html" />
+    <link rel="prev" title="solveminmax.minmax_term module" href="solveminmax.minmax_term.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,16 +91,16 @@
               <p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">solveminmax package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="solveminmax.html">solveminmax package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="solveminmax.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="solveminmax.cons_var_term.html">solveminmax.cons_var_term module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="solveminmax.minmax_term.html">solveminmax.minmax_term module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="solveminmax.plot.html">solveminmax.plot module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">solveminmax.plot module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="solveminmax.solver.html">solveminmax.solver module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="solveminmax.test.html">solveminmax.test module</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-solveminmax">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solveminmax.html#module-solveminmax">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -172,13 +172,15 @@
         
           <li><a href="modules.html">src</a> &raquo;</li>
         
-      <li>solveminmax package</li>
+          <li><a href="solveminmax.html">solveminmax package</a> &raquo;</li>
+        
+      <li>solveminmax.plot module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/solveminmax.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/solveminmax.plot.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -191,23 +193,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="solveminmax-package">
-<h1>solveminmax package<a class="headerlink" href="#solveminmax-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="solveminmax.cons_var_term.html">solveminmax.cons_var_term module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="solveminmax.minmax_term.html">solveminmax.minmax_term module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="solveminmax.plot.html">solveminmax.plot module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="solveminmax.solver.html">solveminmax.solver module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="solveminmax.test.html">solveminmax.test module</a></li>
+  <div class="section" id="module-solveminmax.plot">
+<span id="solveminmax-plot-module"></span><h1>solveminmax.plot module<a class="headerlink" href="#module-solveminmax.plot" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="solveminmax.plot.make_plot">
+<span class="sig-prename descclassname"><span class="pre">solveminmax.plot.</span></span><span class="sig-name descname"><span class="pre">make_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#solveminmax.plot.make_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the equation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>equation</strong> (<em>str</em>) – The string of the equation.</p></li>
+<li><p><strong>low</strong> (<em>float</em>) – The lower bound of the variable.</p></li>
+<li><p><strong>high</strong> (<em>float</em>) – The upper bound of the variable.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="module-solveminmax">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-solveminmax" title="Permalink to this headline">¶</a></h2>
-</div>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 
@@ -216,8 +221,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="solveminmax.cons_var_term.html" class="btn btn-neutral float-right" title="solveminmax.cons_var_term module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="modules.html" class="btn btn-neutral float-left" title="src" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="solveminmax.solver.html" class="btn btn-neutral float-right" title="solveminmax.solver module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="solveminmax.minmax_term.html" class="btn btn-neutral float-left" title="solveminmax.minmax_term module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
